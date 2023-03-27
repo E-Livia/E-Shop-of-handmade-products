@@ -10,7 +10,6 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 registerLocaleData(en);
 
@@ -23,8 +22,7 @@ registerLocaleData(en);
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule,
-    NzLayoutModule
+    HttpClientModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
