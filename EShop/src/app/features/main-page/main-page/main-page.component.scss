@@ -1,6 +1,8 @@
 .main-layout {
   background-color: rgb(204, 247, 226);
   height: 100vh;
+  display: grid;
+  grid-template-rows: 7% 88% 5%;
 }
 
 nz-sider {
@@ -11,6 +13,12 @@ nz-sider {
 nz-content {
   background: rgba(16, 142, 233, 1);
   color: #fff;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  align-items: center;
 }
 
 .logo {
@@ -68,4 +76,17 @@ nz-content {
 
 .search-bar{
   width: 20vw;
+}
+
+.main{
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+#sider-title{
+  text-align: center;
+}
+
+#left-sider{
+  padding: 20px;
 }
