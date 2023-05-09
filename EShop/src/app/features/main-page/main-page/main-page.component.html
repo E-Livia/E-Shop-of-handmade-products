@@ -1,27 +1,52 @@
 <div class="main-layout">
   <div class="header">
     <div class="header-content">
-        <div class="logo">
-          <img id="logo-img" src="../../../../assets/images/logo.png"/>
-        </div>
+      <div class="logo">
+        <img id="logo-img" src="../../../../assets/images/logo.png" />
+      </div>
 
       <div class="search" nz-col nzSpan="6" nzAlign="center" nzJustify="center">
-        <nz-input-group  nzSearch [nzAddOnAfter]="suffixIconButton">
-          <input class="search-bar"  type="text" nz-input placeholder="search item" />
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input
+            class="search-bar"
+            type="text"
+            nz-input
+            placeholder="search item"
+          />
         </nz-input-group>
         <ng-template #suffixIconButton>
-          <button nz-button nzType="primary" nzSearch class="search-btn"><mat-icon>search</mat-icon></button>
+          <button nz-button nzType="primary" nzSearch class="search-btn">
+            <mat-icon>search</mat-icon>
+          </button>
         </ng-template>
       </div>
 
       <div class="btn-container">
-        <button class="header-buttons" mat-fab matTooltip="Wishlist" color="accent" aria-label="Fab button with a heart icon">
+        <button
+          class="header-buttons"
+          mat-fab
+          matTooltip="Wishlist"
+          color="accent"
+          aria-label="Fab button with a heart icon"
+        >
           <mat-icon class="btn-icon">favorite</mat-icon>
         </button>
-        <button class="header-buttons" mat-fab matTooltip="Cart" color="accent" aria-label="Example fab with a heart icon">
+        <button
+          class="header-buttons"
+          mat-fab
+          matTooltip="Cart"
+          color="accent"
+          aria-label="Example fab with a heart icon"
+        >
           <mat-icon class="btn-icon">shopping_cart</mat-icon>
         </button>
-        <button class="header-buttons" mat-fab matTooltip="Account" color="accent" aria-label="Example fab with a heart icon">
+        <button
+          class="header-buttons"
+          mat-fab
+          matTooltip="Account"
+          color="accent"
+          aria-label="Example fab with a heart icon"
+        >
           <mat-icon class="btn-icon">account_circle</mat-icon>
         </button>
       </div>
@@ -29,50 +54,64 @@
   </div>
 
   <div class="main">
-    <div id="left-sider"> 
+    <div id="left-sider">
       <h1 id="sider-title">Catalog</h1>
       <ul nz-menu nzMode="inline">
-        <li nz-submenu nzTitle="Navigation One" nzIcon="mail" nzOpen>
+        <li nz-submenu nzTitle="Articole pentru evenimente">
           <ul>
-            <li nz-menu-group nzTitle="Item 1">
-              <ul>
-                <li nz-menu-item nzSelected>Option 1</li>
-                <li nz-menu-item>Option 2</li>
-              </ul>
-            </li>
-            <li nz-menu-group nzTitle="Item 2">
-              <ul>
-                <li nz-menu-item>Option 3</li>
-                <li nz-menu-item>Option 4</li>
-              </ul>
-            </li>
+            <li nz-menu-item>Valentine's day si Dragobete</li>
+            <li nz-menu-item>Martisor</li>
+            <li nz-menu-item>Paste</li>
+            <li nz-menu-item>Craciun</li>
           </ul>
         </li>
-        <li nz-submenu nzTitle="Navigation Two" nzIcon="appstore">
+        <li nz-submenu nzTitle="Materiale" >
           <ul>
-            <li nz-menu-item>Option 5</li>
-            <li nz-menu-item>Option 6</li>
-            <li nz-submenu nzTitle="Submenu">
+            <li nz-menu-item>Argila polimerica</li>
+            <li nz-menu-item>Ambalaje</li>
+            <li nz-menu-item>Paiete</li>
+            <li nz-submenu nzTitle="Margele">
               <ul>
-                <li nz-menu-item>Option 7</li>
-                <li nz-menu-item>Option 8</li>
-                <li nz-submenu nzTitle="Submenu">
-                  <ul>
-                    <li nz-menu-item>Option 9</li>
-                    <li nz-menu-item>Option 10</li>
-                  </ul>
+                <li nz-menu-item>Margele din lemn</li>
+                <li nz-menu-item>Margele FIMO</li>
+                <li nz-menu-item>Margele din plastic</li>
+                <li nz-menu-item>Margele metalice</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Pietre semipretioase</li>
+            <li nz-submenu nzTitle="Accesorii">
+              <ul>
+                <li nz-menu-item>Ace de insirat margele</li>
+                <li nz-menu-item>Agrafe, baze pentru brose</li>
+                <li nz-menu-item>Baze pentru brelocuri</li>
+                <li nz-menu-item>Cadru inele</li>
+                <li nz-menu-item>Clipsuri, catarame</li>
+                <li nz-menu-item>Lanturi, pandantive, baze coliere</li>
+                <li nz-menu-item>Suporti, tortite cercei</li>
+                <li nz-menu-item>Zale</li>
+                <li nz-menu-item>Incuietori</li>
+                <li nz-menu-item>
+                  Ate, fire, snururi, piele, panglici, elastice
                 </li>
+                <li nz-menu-item>Sarma modelaj, fir otel, sarma cu memorie</li>
               </ul>
             </li>
           </ul>
         </li>
-        <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
+        <li nz-submenu nzTitle="Bijuterii">
           <ul>
-            <li nz-menu-item>Option 11</li>
-            <li nz-menu-item>Option 12</li>
-            <li nz-menu-item>Option 13</li>
+            <li nz-menu-item>Cercei</li>
+            <li nz-menu-item>Inele</li>
+            <li nz-menu-item>Brose</li>
+            <li nz-menu-item>Lantisoare</li>
+            <li nz-menu-item>Bratari</li>
+            <li nz-menu-item>Pandantive</li>
+            <li nz-menu-item>Piercinguri</li>
+            <li nz-menu-item>Accesorii de par</li>
+            <li nz-menu-item>Brelocuri</li>
           </ul>
         </li>
+        <li nz-menu-item>Tutoriale</li>
       </ul>
     </div>
 
