@@ -11,6 +11,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import {MatIconModule} from '@angular/material/icon';
     NzGridModule,
     NzInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NzDropDownModule
   ],
   exports:[
     NzButtonModule,
@@ -37,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     NzGridModule,
     NzInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NzDropDownModule
   ]
 })
 export class SharedModule { }

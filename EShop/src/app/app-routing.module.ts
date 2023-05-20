@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path:'main-page',
     loadChildren: ()=>import('./features/main-page/main-page.module').then((m)=>m.MainPageModule)
+  },
+  {
+    path:'auth',
+    loadChildren: ()=> import('./features/auth/auth.module').then((m)=>m.AuthModule)
   }
 ];
 

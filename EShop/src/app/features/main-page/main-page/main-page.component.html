@@ -65,7 +65,7 @@
             <li nz-menu-item>Craciun</li>
           </ul>
         </li>
-        <li nz-submenu nzTitle="Materiale" >
+        <li nz-submenu nzTitle="Materiale">
           <ul>
             <li nz-menu-item>Argila polimerica</li>
             <li nz-menu-item>Ambalaje</li>
@@ -115,8 +115,53 @@
       </ul>
     </div>
 
-    <nz-content> main content </nz-content>
+    <div class="main-content">
+      <div id="filter-bar">
+        <label>Sortare</label>
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menu">
+          Implicit
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>Nume (A>Z)</li>
+            <li nz-menu-item>Nume (Z>A)</li>
+            <li nz-menu-item>Pret crescator</li>
+            <li nz-menu-item>Pret descrescator</li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <label>Filtrare</label>
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuPret">
+          Pret
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menuPret="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>0-20 lei</li>
+            <li nz-menu-item>20-50 lei</li>
+            <li nz-menu-item>50-100 lei</li>
+            <li nz-menu-item>100+ lei</li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuMaterial">
+          Material
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menuMaterial="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>0-20 lei</li>
+            <li nz-menu-item>20-50 lei</li>
+            <li nz-menu-item>50-100 lei</li>
+            <li nz-menu-item>100+ lei</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+
+      <div id="content-table">table here</div>
+    </div>
   </div>
 
-  <nz-footer> footer </nz-footer>
+  <div class="footer"> footer </div>
 </div>
