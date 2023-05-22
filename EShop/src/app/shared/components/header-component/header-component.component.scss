@@ -28,8 +28,14 @@
     justify-content: flex-end;
   }
 
+  .btn-content{
+    display: flex;
+    align-items: center;
+  }
+
   .header-buttons{
     background-color:rgb(60, 196, 150);
+    width: auto;
   }
   
   .btn-icon{
@@ -37,6 +43,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 6px;
   }
   
   .header-content{
@@ -44,7 +51,7 @@
     padding-right: 30px;
     width: 100%;
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 10% 60% 30%;
     align-items: center;
   }
   

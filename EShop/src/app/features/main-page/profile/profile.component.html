@@ -39,7 +39,7 @@
     <div class="account">
       <ul>
         <li>
-            <a href="../profile"> Contul meu </a>
+          <a href="../profile"> Contul meu </a>
         </li>
         <li>
           <a href="../wishlist/"> Lista de dorinte </a>
@@ -133,30 +133,33 @@
     </div>
 
     <div id="history">
-        <h3>Istoric comenzi</h3>
-        <table *ngIf="tabel.length > 0; else noDataMessage">
-            <thead>
-              <tr>
-                <th>Id comanda</th>
-                <th>Data</th>
-                <th>Total plata</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of tabel">
-                <td class="td">{{ item.id }}</td>
-                <td class="td">{{ item.date }}</td>
-                <td class="td">{{ item.price }}</td>
-                <td class="td">{{ item.status }}</td>
-                <td class="table-btn"><button>Detalii</button></td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="order-history">
+        <span>Istoric comenzi</span>
+      </div>
+      <table *ngIf="tabel.length > 0; else noDataMessage">
+        <thead>
+          <tr>
+            <th>Id comanda</th>
+            <th>Data</th>
+            <th>Total plata</th>
+            <th>Status</th>
+            <th class="table-btn"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tabel">
+            <td class="td">{{ item.id }}</td>
+            <td class="td">{{ item.date }}</td>
+            <td class="td">{{ item.price }}</td>
+            <td class="td">{{ item.status }}</td>
+            <td class="table-btn"><button>Detalii</button></td>
+          </tr>
+        </tbody>
+      </table>
 
-          <ng-template #noDataMessage>
-            <p>Nu există comenzi inregistrate.</p>
-          </ng-template>
+      <ng-template #noDataMessage>
+        <p>Nu există comenzi inregistrate.</p>
+      </ng-template>
     </div>
   </div>
 </div>
