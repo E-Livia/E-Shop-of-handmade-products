@@ -16,9 +16,12 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { HeaderComponentComponent } from './components/header-component/header-component.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponentComponent
+  ],
   imports: [
     CommonModule,
     NzButtonModule,
@@ -46,7 +49,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatButtonModule,
     MatIconModule,
     NzDropDownModule,
-    NzCollapseModule
+    NzCollapseModule,
+    HeaderComponentComponent
   ]
 })
 export class SharedModule { }

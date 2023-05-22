@@ -1,59 +1,6 @@
 <div class="main-layout">
   <div class="header">
-    <div class="header-content">
-      <div class="logo">
-        <img id="logo-img" src="../../../../assets/images/logo.png" />
-      </div>
-
-      <div class="search" nz-col nzSpan="6" nzAlign="center" nzJustify="center">
-        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-          <input
-            class="search-bar"
-            type="text"
-            nz-input
-            placeholder="search item"
-          />
-        </nz-input-group>
-        <ng-template #suffixIconButton>
-          <button nz-button nzType="primary" nzSearch class="search-btn">
-            <mat-icon>search</mat-icon>
-          </button>
-        </ng-template>
-      </div>
-
-      <div class="btn-container">
-        <button
-          class="header-buttons"
-          mat-fab
-          matTooltip="Wishlist"
-          color="accent"
-          aria-label="Fab button with a heart icon"
-        >
-          <mat-icon class="btn-icon">favorite</mat-icon>
-        </button>
-        <button
-          class="header-buttons"
-          mat-fab
-          matTooltip="Cart"
-          color="accent"
-          aria-label="Example fab with a heart icon"
-        >
-          <mat-icon class="btn-icon">shopping_cart</mat-icon>
-        </button>
-        <button
-          class="header-buttons"
-          mat-fab
-          matTooltip="Account"
-          color="accent"
-          aria-label="Example fab with a heart icon"
-        >
-          <mat-icon class="btn-icon">account_circle</mat-icon>
-        </button>
-        <button class="header-buttons" mat-fab matTooltip="About" color="accent">
-          <mat-icon class="btn-icon">info_outline</mat-icon>
-        </button>
-      </div>
-    </div>
+    <app-header-component></app-header-component>
   </div>
 
   <div class="main">
