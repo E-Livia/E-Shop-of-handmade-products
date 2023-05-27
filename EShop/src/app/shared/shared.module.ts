@@ -17,10 +17,13 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HeaderComponentComponent } from './components/header-component/header-component.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
-    HeaderComponentComponent
+    HeaderComponentComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { HeaderComponentComponent } from './components/header-component/header-c
     MatButtonModule,
     MatIconModule,
     NzDropDownModule,
-    NzCollapseModule
+    NzCollapseModule,
+    NzCardModule
   ],
   exports:[
     NzButtonModule,
@@ -50,7 +54,9 @@ import { HeaderComponentComponent } from './components/header-component/header-c
     MatIconModule,
     NzDropDownModule,
     NzCollapseModule,
-    HeaderComponentComponent
+    HeaderComponentComponent,
+    NzCardModule,
+    ProductComponent
   ]
 })
 export class SharedModule { }

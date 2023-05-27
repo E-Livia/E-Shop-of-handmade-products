@@ -51,8 +51,16 @@
 
 #content-table{
   background-color: white;
-  height: auto;
+  height: fit-content;
+  padding: 20px;
 }
+
+.product-item{
+  display:grid;
+  gap:10px;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
 
 .footer{
   position: absolute;
