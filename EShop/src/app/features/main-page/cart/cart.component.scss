@@ -20,3 +20,50 @@
     font-family: Georgia, serif;
     font-weight: bold;
 }
+
+.content{
+    display:grid;
+    grid-template-columns: 60% 40%;
+}
+
+.products{
+    overflow: auto;
+}
+
+.cart-details{
+    background-color: white;
+    display: grid;
+    grid-template-rows: 10% 20% 60%;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+span{
+    padding-top: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.details-table{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+table{
+    width: 300px;
+    height: 120px;
+    font-size: 17px;
+}
+
+.btn-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 80px;
+}
+.btn{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

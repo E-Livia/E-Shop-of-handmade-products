@@ -1,0 +1,16 @@
+<div class="card" *ngFor="let item of productList">
+ <div class="img">
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+ </div>
+ <div class="details">
+    <div class="product-name">{{item.nume}}</div>
+    <div class="product-desc">{{item.desc}}</div>
+    <div class="product-materials">{{item.mat}}</div>
+ </div>
+ <div class="price">
+    {{item.pret}} lei
+ </div>
+ <div class="delete">
+    <button><mat-icon>delete</mat-icon></button>
+ </div>
+</div>

@@ -19,11 +19,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HeaderComponentComponent } from './components/header-component/header-component.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { ProductComponent } from './components/product/product.component';
+import { CartProductComponent } from './components/cart-product/cart-product.component';
 
 @NgModule({
   declarations: [
     HeaderComponentComponent,
-    ProductComponent
+    ProductComponent,
+    CartProductComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import { ProductComponent } from './components/product/product.component';
     NzCollapseModule,
     HeaderComponentComponent,
     NzCardModule,
-    ProductComponent
+    ProductComponent,
+    CartProductComponent
   ]
 })
 export class SharedModule { }
