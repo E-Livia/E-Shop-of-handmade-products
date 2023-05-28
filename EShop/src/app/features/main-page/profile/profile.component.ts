@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,15 @@ export class ProfileComponent implements OnInit {
     { id: 2, date: '22 mai 2023', price: 20, status:'in curs de livrare' }
   ];
 
-  constructor() { }
+  goToAboutPage(){
+    this.router.navigate(['/about']);
+  }
+
+  logOut(){
+    //to do
+  }
+
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }

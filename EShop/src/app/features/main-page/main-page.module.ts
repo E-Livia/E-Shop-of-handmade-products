@@ -7,13 +7,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     MainPageComponent,
     ProfileComponent,
     WishlistComponent,
-    CartComponent
+    CartComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
