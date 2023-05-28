@@ -13,13 +13,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HeaderComponentComponent } from './components/header-component/header-component.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { ProductComponent } from './components/product/product.component';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,10 @@ import { CartProductComponent } from './components/cart-product/cart-product.com
     MatIconModule,
     NzDropDownModule,
     NzCollapseModule,
-    NzCardModule
+    NzCardModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   exports:[
     NzButtonModule,
@@ -59,7 +62,10 @@ import { CartProductComponent } from './components/cart-product/cart-product.com
     HeaderComponentComponent,
     NzCardModule,
     ProductComponent,
-    CartProductComponent
+    CartProductComponent,
+    NzFormModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

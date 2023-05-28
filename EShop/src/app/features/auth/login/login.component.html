@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="login">
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Introduceti adresa de e-mail!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="email" nz-input formControlName="userName" placeholder="Adresa de e-mail" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Introduceti parola!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Parola" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <mat-checkbox >
+        Tine-ma minte
+      </mat-checkbox>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-forgot">Am uitat parola</a>
+    </div>
+  </div>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+  Sau
+  <a>Creeaza cont!</a>
+</form>
+</div>
