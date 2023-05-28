@@ -2,10 +2,45 @@
     background-color: rgb(204, 247, 226);
     height: 100vh;
     display: grid;
-    grid-template-rows: 7% 88% 5%;
+    grid-template-rows: 7% 10% 83%;
+    overflow: auto;
 }
 
 .header {
     display: flex;
     align-items: center;
 }
+
+#preferate {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 30px;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+#content-table {
+    background-color: white;
+    height: fit-content;
+    margin: 0px 40px 40px 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-item {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    justify-content: center;
+}
+
+// .footer{
+//     display: flex;
+//     justify-content: center;
+//     align-items: flex-end;
+// }

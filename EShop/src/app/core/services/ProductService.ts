@@ -15,6 +15,11 @@ import { Injectable } from '@angular/core';
         "nume8",
         "9",
         "10",
+        "11",
+        "11",
+        "11",
+        "11",
+        "11",
         "11"
       ]
 
