@@ -10,6 +10,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedServiceService } from './core/services/shared-service.service';
 
 registerLocaleData(en);
 
@@ -24,7 +25,7 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, SharedServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

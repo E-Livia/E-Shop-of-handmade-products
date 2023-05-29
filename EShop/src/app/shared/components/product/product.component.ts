@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/core/services/ProductService';
+import { SharedServiceService } from 'src/app/core/services/shared-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -8,11 +9,29 @@ import { ProductService } from 'src/app/core/services/ProductService';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private product:ProductService) { }
+  constructor(private service: SharedServiceService, private router: Router) { }
 
-  tabelProduse: string[] = [];
+  ProductList: any = [];
 
   ngOnInit(): void {
-    this.tabelProduse=this.product.getNames();
+    this.refreshProductList();
+  }
+
+  goToProductDetails(){
+    this.router.navigateByUrl('/product-details');
+  }
+
+  goToCartPage(){
+    this.router.navigate(['/cart']);
+  }
+
+  goToWishlistPage(){
+    this.router.navigate(['/wishlist']);
+  }
+
+  refreshProductList() {
+    this.service.getProductList().subscribe(data => {
+      this.ProductList = data;
+    });
   }
 }

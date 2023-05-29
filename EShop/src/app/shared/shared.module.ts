@@ -20,12 +20,14 @@ import { CartProductComponent } from './components/cart-product/cart-product.com
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
     HeaderComponentComponent,
     ProductComponent,
-    CartProductComponent
+    CartProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CartProductComponent,
     NzFormModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ProductDetailsComponent
   ]
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/core/services/ProductService';
+import { SharedServiceService } from 'src/app/core/services/shared-service.service';
 
 @Component({
   selector: 'app-cart-product',
@@ -7,13 +7,18 @@ import { ProductService } from 'src/app/core/services/ProductService';
   styleUrls: ['./cart-product.component.scss']
 })
 export class CartProductComponent implements OnInit {
+  constructor(private service: SharedServiceService) { }
 
-  constructor(private product:ProductService) { }
+  ProductList: any = [];
 
-  productList:any[]=[];
-  
   ngOnInit(): void {
-    this.productList=this.product.getProducts();
+    this.refreshProductList();
+  }
+
+  refreshProductList() {
+    this.service.getProductList().subscribe(data => {
+      this.ProductList = data;
+    });
   }
 
 }

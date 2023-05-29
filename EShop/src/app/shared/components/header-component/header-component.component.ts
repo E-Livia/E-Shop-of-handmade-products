@@ -23,7 +23,6 @@ export class HeaderComponentComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
