@@ -20,8 +20,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/about']);
   }
 
-  logOut(){
-    //to do
+  logOut = () => {
+    localStorage.removeItem("token");
+    this.router.navigate(['auth']);
   }
 
   constructor(private router:Router) { }

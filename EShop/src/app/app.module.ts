@@ -9,8 +9,9 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { SharedServiceService } from './core/services/shared-service.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProductServiceService } from './core/services/product-service.service';
+import { TokenInterceptorService } from './core/interceptor/token-interceptor.service';
 
 registerLocaleData(en);
 
@@ -25,7 +26,9 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }, SharedServiceService],
+  providers: [{ provide: NZ_I18N, useValue: en_US }
+     ,ProductServiceService
+    ,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,6 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     HeaderComponentComponent,
@@ -46,7 +50,10 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     NzCardModule,
     NzFormModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports:[
     NzButtonModule,
@@ -68,7 +75,10 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     NzFormModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class SharedModule { }

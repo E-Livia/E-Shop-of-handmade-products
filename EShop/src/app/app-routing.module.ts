@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from './core/guards/role.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +15,11 @@ const routes: Routes = [
   {
     path:'auth',
     loadChildren: ()=> import('./features/auth/auth.module').then((m)=>m.AuthModule)
+  },
+  {
+    path:'admin-main-page',
+    loadChildren: ()=>import('./features/admin-main-page/admin-main-page.module').then((m)=>m.AdminMainPageModule)
+    ,canActivate:[AuthGuard, RoleGuard]
   }
 ];
 

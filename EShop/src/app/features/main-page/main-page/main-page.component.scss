@@ -2,7 +2,7 @@
   background-color: rgb(204, 247, 226);
   height: 100vh;
   display: grid;
-  grid-template-rows: 7% 88% 5%;
+  grid-template-rows: 7% 93%;
 }
 
 .header{
@@ -13,7 +13,7 @@
 .main{
   display: grid;
   grid-template-columns: 20% 80%;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 
 #sider-title{
@@ -22,11 +22,9 @@
 
 #left-sider{
   margin: 20px;
-  overflow-y: auto;
 }
 
 .main-content{
-  // border: 2px solid rgb(44, 179, 105);
   display: grid;
   grid-template-rows: 10% 90%;
   height: 100vh;
@@ -63,8 +61,10 @@
 
 
 .footer{
+  background-color:white;
   position: absolute;
   bottom: 0;
   left: 0;
   height: 50px;
+  width: 300px;
 }

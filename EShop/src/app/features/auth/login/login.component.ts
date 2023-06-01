@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/core/services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -8,33 +9,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  validateForm!: FormGroup;
+  responsedata: any;
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
+  constructor(private service:AuthServiceService, private router: Router) { 
+    localStorage.clear();
+  }
+
+  Login = new FormGroup({
+    username: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required)
+  });
+
+  ngOnInit(): void {
   }
 
   goToRegister(){
-    this.router.navigate(['/auth/register']); //NU MERGE. DE CE ??
+    this.router.navigate(['/auth/register']);
   }
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  ProceedLogin() {
+    if (this.Login.valid) {
+      this.service.ProceedLogin(this.Login.value).subscribe(
+        {
+          next:(response)=>{
+            console.log(response);
+            if(response){
+                localStorage.setItem('token',response.JWTToken);
+                localStorage.setItem('refreshToken',response.RefreshToken);
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+                this.router.navigate(['']);
+            }
+          },
+          error:(error)=>{
+            console.error(error);
+          }
+        }
+
+      );
+    }
   }
-
 }

@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedServiceService {
+export class ProductServiceService {
+
   readonly APIUrl="https://localhost:44376/api";
 
   constructor(private http:HttpClient) { }

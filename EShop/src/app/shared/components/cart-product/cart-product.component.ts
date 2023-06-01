@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedServiceService } from 'src/app/core/services/shared-service.service';
+import { ProductServiceService } from 'src/app/core/services/product-service.service';
 
 @Component({
   selector: 'app-cart-product',
@@ -7,7 +7,7 @@ import { SharedServiceService } from 'src/app/core/services/shared-service.servi
   styleUrls: ['./cart-product.component.scss']
 })
 export class CartProductComponent implements OnInit {
-  constructor(private service: SharedServiceService) { }
+  constructor(private service: ProductServiceService) { }
 
   ProductList: any = [];
 
