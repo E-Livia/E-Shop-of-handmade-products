@@ -30,7 +30,7 @@ namespace EShop_backend.Controllers
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
             SqlDataReader myReader;
-            using(SqlConnection myCon=new SqlConnection(sqlDataSource))
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
@@ -52,11 +52,11 @@ namespace EShop_backend.Controllers
             string query = @"
                     insert into dbo.Product values
                     (
-                    '" + product.name + @"'
-                    ,'" + product.description + @"'
-                    ," + product.price + @"
-                    ,'" + product.credits + @"'
-                    ,'"+product.active+@"')
+                    '" + product.Name + @"'
+                    ,'" + product.Description + @"'
+                    ," + product.Price + @"
+                    ,'" + product.Credits + @"'
+                    ,'" + product.Active + @"')
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
