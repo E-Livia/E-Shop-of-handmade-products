@@ -1,0 +1,41 @@
+<div class="entire-page">
+    <div class="header">
+      <app-admin-header></app-admin-header>
+    </div>
+  
+    <div>
+      <p id="my-cart">Cosul meu</p>
+    </div>
+  
+    <div class="content">
+      <div class="products">
+        <app-cart-product></app-cart-product>
+      </div>
+      <div class="cart-details">
+        <div>
+          <span>Recapitulare</span>
+        </div>
+        <div class="details-table">
+          <table>
+            <tr>
+              <td>Valoarea produselor</td>
+              <td>200 lei</td>
+            </tr>
+            <tr>
+              <td><button mat-icon-button><mat-icon>info</mat-icon></button>Costuri transport</td>
+              <td>15 lei</td>
+            </tr>
+            <tr>
+              <td>Total de plata</td>
+              <td>215 lei</td>
+            </tr>
+          </table>
+        </div>
+        <div class="btn-container">
+          <button class="btn" (click)="continueShopping()">Continua cumparaturile</button>
+          <button class="btn" (click)="proceedOrder()">Finalizeaza comanda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

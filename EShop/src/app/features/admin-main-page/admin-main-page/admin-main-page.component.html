@@ -1,2 +1,128 @@
-<p>admin-main-page works!</p>
-<h3>asfdgfhg</h3>
+<div class="main-layout">
+  <div class="header">
+    <app-admin-header></app-admin-header>
+  </div>
+
+  <div class="main">
+    <div id="left-sider">
+      <h1 id="sider-title">Catalog</h1>
+      <div class="catalog-btn-container">
+        <button>Adauga categorie</button>
+        <button>Actualizeaza categorie</button>
+        <button>Dezactiveaza categorie</button>
+      </div>
+      <ul nz-menu nzMode="inline">
+        <li nz-submenu nzTitle="Articole pentru evenimente">
+          <ul>
+            <li nz-menu-item>Valentine's day si Dragobete</li>
+            <li nz-menu-item>Martisor</li>
+            <li nz-menu-item>Paste</li>
+            <li nz-menu-item>Craciun</li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Materiale">
+          <ul>
+            <li nz-menu-item>Argila polimerica</li>
+            <li nz-menu-item>Ambalaje</li>
+            <li nz-menu-item>Paiete</li>
+            <li nz-submenu nzTitle="Margele">
+              <ul>
+                <li nz-menu-item>Margele din lemn</li>
+                <li nz-menu-item>Margele FIMO</li>
+                <li nz-menu-item>Margele din plastic</li>
+                <li nz-menu-item>Margele metalice</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Pietre semipretioase</li>
+            <li nz-submenu nzTitle="Accesorii">
+              <ul>
+                <li nz-menu-item>Ace de insirat margele</li>
+                <li nz-menu-item>Agrafe, baze pentru brose</li>
+                <li nz-menu-item>Baze pentru brelocuri</li>
+                <li nz-menu-item>Cadru inele</li>
+                <li nz-menu-item>Clipsuri, catarame</li>
+                <li nz-menu-item>Lanturi, pandantive, baze coliere</li>
+                <li nz-menu-item>Suporti, tortite cercei</li>
+                <li nz-menu-item>Zale</li>
+                <li nz-menu-item>Incuietori</li>
+                <li nz-menu-item>
+                  Ate, fire, snururi, piele, panglici, elastice
+                </li>
+                <li nz-menu-item>Sarma modelaj, fir otel, sarma cu memorie</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Bijuterii">
+          <ul>
+            <li nz-menu-item>Cercei</li>
+            <li nz-menu-item>Inele</li>
+            <li nz-menu-item>Brose</li>
+            <li nz-menu-item>Lantisoare</li>
+            <li nz-menu-item>Bratari</li>
+            <li nz-menu-item>Pandantive</li>
+            <li nz-menu-item>Piercinguri</li>
+            <li nz-menu-item>Accesorii de par</li>
+            <li nz-menu-item>Brelocuri</li>
+          </ul>
+        </li>
+        <li nz-menu-item>Tutoriale</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="admin-commands">
+        <button>Adauga produs</button>
+        <button>Modifica produs</button>
+        <button>Sterge produs</button>
+    </div>
+
+      <div id="filter-bar">
+        <label>Sortare</label>
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menu">
+          Implicit
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>Nume (A>Z)</li>
+            <li nz-menu-item>Nume (Z>A)</li>
+            <li nz-menu-item>Pret crescator</li>
+            <li nz-menu-item>Pret descrescator</li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <label>Filtrare</label>
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuPret">
+          Pret
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menuPret="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>0-20 lei</li>
+            <li nz-menu-item>20-50 lei</li>
+            <li nz-menu-item>50-100 lei</li>
+            <li nz-menu-item>100+ lei</li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuMaterial">
+          Material
+          <span class="material-icons">arrow_drop_down</span>
+        </a>
+        <nz-dropdown-menu #menuMaterial="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>0-20 lei</li>
+            <li nz-menu-item>20-50 lei</li>
+            <li nz-menu-item>50-100 lei</li>
+            <li nz-menu-item>100+ lei</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+
+      <div id="content-table">
+        <app-product class="product-item"></app-product>
+      </div>
+    </div>
+  </div>
+</div>

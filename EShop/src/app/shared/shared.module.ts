@@ -25,13 +25,17 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
     HeaderComponentComponent,
     ProductComponent,
     CartProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AdminHeaderComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +82,9 @@ import { MatInputModule } from '@angular/material/input';
     ProductDetailsComponent,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AdminHeaderComponent,
+    OrderDetailsComponent
   ]
 })
 export class SharedModule { }
