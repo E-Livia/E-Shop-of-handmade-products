@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/core/services/auth-service.service';
+import { ClientServiceService } from 'src/app/core/services/client-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +12,11 @@ export class ProfileComponent implements OnInit {
   date="Datele contului";
   date1="Adresa mea";
   date2="Adresa de facturare";
-
-  tabel: any[] = [
-    { id: 1, date: '22 mai 2023', price: 20, status:'in curs de livrare' },
-    { id: 2, date: '22 mai 2023', price: 20, status:'in curs de livrare' }
-  ];
+  loggedInUsername:string;
+  loggedInRole:string;
+  User:any=[];
+  UserAddress:any=[];
+  OrderHistory:any=[];
 
   goToAboutPage(){
     this.router.navigate(['/about']);
@@ -25,9 +27,41 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['auth']);
   }
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private authService:AuthServiceService,private clientService:ClientServiceService) {
+    this.loggedInUsername=this.authService.getLoggedInUsername();
+    this.loggedInRole=this.authService.getLoggedInRole();
+   }
 
   ngOnInit(): void {
+    this.getUserInfo();
+    this.getProfileUserAddress();
+    this.getClientOrderHistory();
   }
+
+  getUserInfo() {
+    this.clientService.getClientInfo(this.loggedInUsername).subscribe(data => {
+      this.User = data;
+      console.log(this.User);
+    });
+    
+  }
+
+  getProfileUserAddress() {
+    this.clientService.getProfileClientAddress(this.loggedInUsername).subscribe(data => {
+      this.UserAddress = data;
+      console.log(this.UserAddress);
+    });
+    
+  }
+
+  getClientOrderHistory() {
+    this.clientService.getClientOrderHistory(this.loggedInUsername).subscribe(data => {
+      this.OrderHistory = data;
+      console.log(this.OrderHistory);
+    });
+    
+  }
+
+
 
 }

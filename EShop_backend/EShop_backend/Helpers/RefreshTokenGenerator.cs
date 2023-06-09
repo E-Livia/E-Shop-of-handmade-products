@@ -24,7 +24,7 @@ namespace EShop_backend.Helpers
                 string RefreshToken = Convert.ToBase64String(randomNumber);
 
                 var _user = context.RefreshToken.FirstOrDefault(o => o.UserId == username);
-                if(_user!=null)
+                if (_user != null)
                 {
                     _user.RefreshToken1 = RefreshToken;
                     context.SaveChanges();
@@ -34,9 +34,9 @@ namespace EShop_backend.Helpers
                     RefreshToken refresh = new RefreshToken()
                     {
                         UserId = username,
-                        TokenId=new Random().Next().ToString(),
-                        RefreshToken1=RefreshToken,
-                        Active=true
+                        TokenId = new Random().Next().ToString(),
+                        RefreshToken1 = RefreshToken,
+                        Active = true
                     };
                 }
 

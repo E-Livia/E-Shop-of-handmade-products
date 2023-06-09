@@ -1,0 +1,31 @@
+<ng-container *ngIf="ProductList.length === 0; else dataTemplate">
+    <ng-template #noDataMessage>
+      <p>Nu există produse înregistrate.</p>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="noDataMessage"></ng-container>
+  </ng-container>
+  
+  <ng-template #dataTemplate>
+    <ng-container *ngFor="let item of ProductList">
+      <div class="product-card" (click)="goToProductDetails()">
+        <div class="prod-img">
+          <img
+            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          />
+        </div>
+        <div class="prod-name">
+          {{ item.name }}
+        </div>
+        <div class="prod-price">{{ item.price }} lei</div>
+        <div class="btn-container">
+          <div id="first-btn">
+            <button mat-raised-button color="warn" id="fav-btn" (click)="goToWishlistPage()"><mat-icon>favorite</mat-icon></button>
+          </div>
+          <div id="second-btn">
+            <button mat-raised-button color="primary" id="cart-btn" (click)="goToCartPage()">Adauga in cos</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+  

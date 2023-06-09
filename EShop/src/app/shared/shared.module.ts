@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { WishlistProductComponent } from './components/wishlist-product/wishlist-product.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     CartProductComponent,
     ProductDetailsComponent,
     AdminHeaderComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    WishlistProductComponent
   ],
   imports: [
     CommonModule,
@@ -84,7 +86,8 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     MatFormFieldModule,
     MatInputModule,
     AdminHeaderComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    WishlistProductComponent
   ]
 })
 export class SharedModule { }

@@ -68,6 +68,8 @@ namespace EShop_backend.Controllers
 
             tokenResponse.JWTToken = finaltoken;
             tokenResponse.RefreshToken = tokenGenerator.GenerateToken(user.username);
+            tokenResponse.Username = _user.UserId;
+            tokenResponse.Role = _user.Role;
 
             return Ok(tokenResponse);
         }

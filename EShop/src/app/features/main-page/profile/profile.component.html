@@ -25,14 +25,19 @@
         <mat-icon class="btn-icon">exit_to_app</mat-icon>
       </button>
 
-      <button class="button" mat-mini-fab color="accent" (click)="goToAboutPage()">
+      <button
+        class="button"
+        mat-mini-fab
+        color="accent"
+        (click)="goToAboutPage()"
+      >
         <mat-icon class="btn-icon">info_outline</mat-icon>
       </button>
     </div>
   </div>
 
   <div>
-    <p id="welcome-message">Bine ai venit, Elena-Livia</p>
+    <p id="welcome-message">Bine ai venit, {{ loggedInUsername }}</p>
   </div>
 
   <div class="main-content">
@@ -55,58 +60,63 @@
 
     <div id="personal-info">
       <nz-collapse>
-        <nz-collapse-panel [nzHeader]="date" [nzActive]="true">
+        <nz-collapse-panel [nzHeader]="date" [nzActive]="true" *ngFor="let item of User">
           <table>
             <tr>
               <td>Nume</td>
             </tr>
             <tr>
-              <td>Popa</td>
+              <td>{{ item.lastName }}</td>
             </tr>
             <tr>
               <td>Prenume</td>
             </tr>
             <tr>
-              <td>Elena-Livia</td>
+              <td>{{ item.firstName }}</td>
             </tr>
             <tr>
               <td>Adresa e-mail</td>
             </tr>
             <tr>
-              <td>livia.popa.3@gmail.com</td>
+              <td>{{ item.emailAddress }}</td>
             </tr>
             <tr>
               <td>Telefon</td>
             </tr>
             <tr>
-              <td>0730282401</td>
+              <td>{{ item.phoneNo }}</td>
             </tr>
           </table>
           <button class="modify-btn">Modifica datele</button>
         </nz-collapse-panel>
-        <nz-collapse-panel [nzHeader]="date1" [nzActive]="false">
-          <table>
-            <tr>
-              <td>Nume, prenume</td>
-            </tr>
-            <tr>
-              <td>Popa Elena-Livia</td>
-            </tr>
+        <nz-collapse-panel [nzHeader]="date1" [nzActive]="false" >
+          <ng-container *ngIf="UserAddress.length === 0; else userAddressContent">
+            <p>Nu există adrese disponibile.</p>
+          </ng-container>
+          <ng-template #userAddressContent>
+          <table *ngFor="let item1 of UserAddress">
+              <tr>
+                <td>Nume prenume</td>
+              </tr>
+              <tr>
+                <td>{{ item1.name }}</td>
+              </tr>
 
-            <tr>
-              <td>Telefon</td>
-            </tr>
-            <tr>
-              <td>0730282401</td>
-            </tr>
-            <tr>
-              <td>Adresa</td>
-            </tr>
-            <tr>
-              <td>sat Plavia, com. Iordaceanu, jud. PH, nr 122, bl. 122</td>
-            </tr>
-          </table>
-          <button class="modify-btn">Modifica datele</button>
+              <tr>
+                <td>Telefon</td>
+              </tr>
+              <tr>
+                <td>{{ item1.phoneNo }}</td>
+              </tr>
+              <tr>
+                <td>Adresa</td>
+              </tr>
+              <tr>
+                <td>{{ item1.addressLine }}</td>
+              </tr>
+            </table>
+            <button class="modify-btn">Modifica datele</button>
+          </ng-template>
         </nz-collapse-panel>
         <nz-collapse-panel [nzHeader]="date2" [nzActive]="false">
           <button>Utilizeaza adresa ta</button>
@@ -139,7 +149,7 @@
       <div class="order-history">
         <span>Istoric comenzi</span>
       </div>
-      <table *ngIf="tabel.length > 0; else noDataMessage">
+      <table *ngIf="OrderHistory.length > 0; else noDataMessage">
         <thead>
           <tr>
             <th>Id comanda</th>
@@ -150,10 +160,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of tabel">
-            <td class="td">{{ item.id }}</td>
+          <tr *ngFor="let item of OrderHistory">
+            <td class="td">{{ item.orderId }}</td>
             <td class="td">{{ item.date }}</td>
-            <td class="td">{{ item.price }}</td>
+            <td class="td">{{ item.totalPrice }}</td>
             <td class="td">{{ item.status }}</td>
             <td class="table-btn"><button>Detalii</button></td>
           </tr>

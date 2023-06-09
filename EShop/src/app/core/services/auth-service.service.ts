@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthServiceService {
   readonly APIUrl = "https://localhost:44376/user/authenticate";
+  private loggedInUsername: string = '';
+  private loggedInRole:string='';
 
   constructor(private apiService:ApiService, private router:Router) { }
 
@@ -17,7 +19,15 @@ export class AuthServiceService {
   // }
 
   ProceedLogin(UserCred: any) {
-    return this.apiService.post("/user/authenticate",UserCred)
+    return this.apiService.post("/user/authenticate",UserCred);
+  }
+
+  getLoggedInUsername():string{
+    return this.loggedInUsername=localStorage.getItem('Username')||'';
+  }
+
+  getLoggedInRole():string{
+    return this.loggedInRole=localStorage.getItem('Role')||'';
   }
 
   GenerateRefreshToken() {

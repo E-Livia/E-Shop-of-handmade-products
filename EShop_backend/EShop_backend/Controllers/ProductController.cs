@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using EShop_backend.Models;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace EShop_backend.Controllers
 {
@@ -76,5 +78,34 @@ namespace EShop_backend.Controllers
 
             return new JsonResult("Added Successfully");
         }
+
+
+        [Route("categories/{categoryName}")]
+        [HttpGet]
+        public JsonResult GetProductByCategory(string categoryName)
+        {
+            var query = "EXEC GetProductByCategory @categoryName";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@categoryName", categoryName);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
     }
 }

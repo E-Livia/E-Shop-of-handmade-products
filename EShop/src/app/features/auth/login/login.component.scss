@@ -3,11 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(204, 247, 226);
 }
 
 .login-form {
     width: 500px;
-    height: 500px;
+    height: 350px;
+    background-color: white;
+    padding: 20px;
 }
 
 .login-form-margin {

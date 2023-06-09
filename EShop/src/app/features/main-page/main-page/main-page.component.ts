@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 // obj!:Interface;
-  constructor() { }
+  selectedCategory:string='';
+  constructor(private categoryService:CategoryServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  selectCategory(category: string) {
+    this.selectedCategory = category;
+    this.categoryService.setSelectedCategory(category);
   }
 }

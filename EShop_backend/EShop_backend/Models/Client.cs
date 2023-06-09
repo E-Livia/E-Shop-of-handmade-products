@@ -26,6 +26,7 @@ namespace EShop_backend.Models
         public int PhoneNo { get; set; }
         public bool? Active { get; set; }
 
+        public virtual User UsernameNavigation { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<ClientAddress> ClientAddress { get; set; }
         public virtual ICollection<ClientOrder> ClientOrder { get; set; }

@@ -15,6 +15,10 @@ export class ProductServiceService {
     return this.http.get<any>(this.APIUrl+'/product');
   }
 
+  getProductByCategory(categoryName: string): Observable<any[]> {
+  return this.http.get<any>(this.APIUrl + `/product/categories/${categoryName}`);
+}
+
   addProduct(val:any){
     return this.http.post(this.APIUrl+'/product',val);
   }

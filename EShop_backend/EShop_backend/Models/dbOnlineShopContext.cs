@@ -37,16 +37,18 @@ namespace EShop_backend.Models
         public virtual DbSet<ProductMaterial> ProductMaterial { get; set; }
         public virtual DbSet<ProductOrder> ProductOrder { get; set; }
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<UnregisteredClientAddress> UnregisteredClientAddress { get; set; }
         public virtual DbSet<UnregisteredClientOrder> UnregisteredClientOrder { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Wishlist> Wishlist { get; set; }
+        public virtual DbSet<WishlistProduct> WishlistProduct { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-JU43L1R\\SQLEXPRESS;Initial Catalog=dbOnlineShop; Integrated Security=true; user id=sa1;password=admin123;");
             }
         }
 
@@ -143,6 +145,12 @@ namespace EShop_backend.Models
                     .IsRequired()
                     .HasColumnName("username")
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.UsernameNavigation)
+                    .WithMany(p => p.Client)
+                    .HasForeignKey(d => d.Username)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Client_User");
             });
 
             modelBuilder.Entity<ClientAddress>(entity =>
@@ -254,6 +262,12 @@ namespace EShop_backend.Models
                     .IsRequired()
                     .HasColumnName("username")
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.UsernameNavigation)
+                    .WithMany(p => p.Employee)
+                    .HasForeignKey(d => d.Username)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Employee_User");
             });
 
             modelBuilder.Entity<EmployeeAddress>(entity =>
@@ -450,7 +464,8 @@ namespace EShop_backend.Models
 
                 entity.Property(e => e.Image)
                     .IsRequired()
-                    .HasColumnName("image");
+                    .HasColumnName("image")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.ImageName)
                     .IsRequired()
@@ -534,27 +549,10 @@ namespace EShop_backend.Models
                     .HasColumnName("active")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.RefreshToken1)
-                    .IsRequired()
-                    .HasColumnName("refreshToken");
+                entity.Property(e => e.RefreshToken1).HasColumnName("refreshToken");
 
                 entity.Property(e => e.TokenId)
-                    .IsRequired()
                     .HasColumnName("tokenId")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.Property(e => e.RoleId)
-                    .HasColumnName("roleId")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -617,8 +615,7 @@ namespace EShop_backend.Models
             {
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Active)
                     .IsRequired()
@@ -661,19 +658,32 @@ namespace EShop_backend.Models
 
                 entity.Property(e => e.ClientId).HasColumnName("clientId");
 
-                entity.Property(e => e.ProductId).HasColumnName("productId");
-
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Wishlist)
                     .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Wishlist_Client");
+            });
+
+            modelBuilder.Entity<WishlistProduct>(entity =>
+            {
+                entity.Property(e => e.WishlistProductid).HasColumnName("wishlistProductid");
+
+                entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.Property(e => e.WishlistId).HasColumnName("wishlistId");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Wishlist)
+                    .WithMany(p => p.WishlistProduct)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Wishlist_Product");
+                    .HasConstraintName("FK_WishlistProduct_Product");
+
+                entity.HasOne(d => d.Wishlist)
+                    .WithMany(p => p.WishlistProduct)
+                    .HasForeignKey(d => d.WishlistId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_WishlistProduct_Wishlist");
             });
 
             OnModelCreatingPartial(modelBuilder);

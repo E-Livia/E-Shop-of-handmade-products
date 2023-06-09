@@ -17,7 +17,7 @@ namespace EShop_backend.Models
             ProductImage = new HashSet<ProductImage>();
             ProductMaterial = new HashSet<ProductMaterial>();
             ProductOrder = new HashSet<ProductOrder>();
-            Wishlist = new HashSet<Wishlist>();
+            WishlistProduct = new HashSet<WishlistProduct>();
         }
 
         public int ProductId { get; set; }
@@ -33,6 +33,6 @@ namespace EShop_backend.Models
         public virtual ICollection<ProductImage> ProductImage { get; set; }
         public virtual ICollection<ProductMaterial> ProductMaterial { get; set; }
         public virtual ICollection<ProductOrder> ProductOrder { get; set; }
-        public virtual ICollection<Wishlist> Wishlist { get; set; }
+        public virtual ICollection<WishlistProduct> WishlistProduct { get; set; }
     }
 }

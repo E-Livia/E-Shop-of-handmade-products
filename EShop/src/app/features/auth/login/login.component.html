@@ -1,16 +1,16 @@
-<!-- <div class="login">
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+<div class="login">
+<form nz-form [formGroup]="Login" class="login-form" (ngSubmit)="ProceedLogin()">
   <nz-form-item>
-    <nz-form-control nzErrorTip="Introduceti adresa de e-mail!">
+    <nz-form-control nzErrorTip="Introduceti numele de utilizator!">
       <nz-input-group nzPrefixIcon="user">
-        <input type="email" nz-input formControlName="userName" placeholder="Adresa de e-mail" />
+        <input type="text" nz-input formControlName="username" placeholder="Nume de utilizator" autocomplete="off" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control nzErrorTip="Introduceti parola!">
       <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input formControlName="password" placeholder="Parola" />
+        <input type="password" nz-input formControlName="password" placeholder="Parola" autocomplete="off" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -24,57 +24,8 @@
       <a class="login-form-forgot">Am uitat parola</a>
     </div>
   </div>
-  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Autentificare</button>
   Sau
   <a (click)="goToRegister()">Creeaza cont!</a>
 </form>
-</div> -->
-
-<div class="container-fluid" style="margin-top: 10%;">
-  <div class="row">
-    <div class="offset-lg-3 col-lg-6">
-   
-<div class="card-box" style="background-color: #ccc;">
-    <form [formGroup]="Login" (ngSubmit)="ProceedLogin()">
-
-   
-    <div class="row" style="display: block;">
-      <h2 style="text-align: center;" >Login</h2>
-    </div>
-    
-  <div class="row">
-    <div class="offset-lg-3 col-lg-6">
-        <div class="form-group">
-            <label for="txtname">User Name</label>
-            <input type="text" id="txtname" class="form-control" formControlName="username" placeholder="Enter the User Name"   autocomplete="off"  />
-        </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="offset-lg-3 col-lg-6">
-        <div class="form-group">
-            <label for="txtpassword">password</label>
-            <input type="text" id="txtpassword" class="form-control" formControlName="password"  placeholder="Enter the password"  autocomplete="off"  />
-        </div>
-    </div>
-  </div>
-  
-  
-  <div class="row">
-    <div class="offset-lg-3 col-lg-2">
-      <br>
-        <div class="form-group" style="text-align: center;">
-           <button type="submit" class="btn btn-primary btn-lg btn-block" >Login</button>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <br>
-        <span></span>
-    </div>
-  </div>
-</form>
-  
-  </div>
-</div>
-</div>
 </div>

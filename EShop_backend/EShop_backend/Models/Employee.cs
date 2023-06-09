@@ -27,6 +27,7 @@ namespace EShop_backend.Models
         public DateTime EmploymentDate { get; set; }
         public bool? Active { get; set; }
 
+        public virtual User UsernameNavigation { get; set; }
         public virtual ICollection<EmployeeAddress> EmployeeAddress { get; set; }
         public virtual ICollection<EmployeeOrder> EmployeeOrder { get; set; }
     }

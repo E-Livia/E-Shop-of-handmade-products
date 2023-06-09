@@ -7,9 +7,13 @@ using System.Collections.Generic;
 
 namespace EShop_backend.Models
 {
-    public partial class Role
+    public partial class WishlistProduct
     {
-        public string RoleId { get; set; }
-        public string Name { get; set; }
+        public int WishlistProductid { get; set; }
+        public int WishlistId { get; set; }
+        public int ProductId { get; set; }
+
+        public virtual Product Product { get; set; }
+        public virtual Wishlist Wishlist { get; set; }
     }
 }
