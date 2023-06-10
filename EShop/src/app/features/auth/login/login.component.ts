@@ -9,8 +9,6 @@ import { AuthServiceService } from 'src/app/core/services/auth-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  responsedata: any;
-
   constructor(private service: AuthServiceService, private router: Router) {
     localStorage.clear();
   }
@@ -27,6 +25,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/auth/register']);
   }
 
+  goToForgotPassword() {
+    this.router.navigate(['/auth/forgot-password']);
+  }
+
   ProceedLogin() {
     if (this.Login.valid) {
       this.service.ProceedLogin(this.Login.value).subscribe(
@@ -39,11 +41,11 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('token', response.JWTToken);
               localStorage.setItem('refreshToken', response.RefreshToken);
 
-              if(response.Role==="admin"){
+              if (response.Role === "admin") {
                 this.router.navigate(['admin-main-page']);
               }
               else
-              this.router.navigate(['']);
+                this.router.navigate(['']);
             }
           },
           error: (error) => {

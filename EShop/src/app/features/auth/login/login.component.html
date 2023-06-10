@@ -1,5 +1,6 @@
 <div class="login">
 <form nz-form [formGroup]="Login" class="login-form" (ngSubmit)="ProceedLogin()">
+  <h3>Bine ai venit!</h3>
   <nz-form-item>
     <nz-form-control nzErrorTip="Introduceti numele de utilizator!">
       <nz-input-group nzPrefixIcon="user">
@@ -14,18 +15,18 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
+  
   <div nz-row class="login-form-margin">
     <div nz-col [nzSpan]="12">
-      <mat-checkbox >
+      <!-- <mat-checkbox >
         Tine-ma minte
-      </mat-checkbox>
+      </mat-checkbox> -->
     </div>
     <div nz-col [nzSpan]="12">
-      <a class="login-form-forgot">Am uitat parola</a>
+      <a class="login-form-forgot" (click)="goToForgotPassword()">Am uitat parola</a>
     </div>
   </div>
   <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Autentificare</button>
-  Sau
-  <a (click)="goToRegister()">Creeaza cont!</a>
+  <p>Sau <button nz-button nzType="dashed" (click)="goToRegister()">Creeaza cont!</button></p>
 </form>
 </div>

@@ -147,5 +147,40 @@ namespace EShop_backend.Controllers
 
             return Ok(new { message = "Register successfully!" });
         }
+
+        [Route("UpdatePassword")]
+        [HttpPost]
+        public IActionResult UpdatePassword([FromBody] usercred user)
+        {
+            //verify existing user
+            var _existingUser = context.User.FirstOrDefault(o => o.UserId == user.username);
+            if(_existingUser==null)
+            {
+                return BadRequest("Nu exista userul introdus!");
+            }
+
+            var query = @"EXEC UpdateClientPassword @username, @password";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@username", user.username);
+                    myCommand.Parameters.AddWithValue("@password", user.password);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return Ok(new { message = "Password updated successfully!" });
+        }
     }
 }

@@ -22,6 +22,10 @@ export class AuthServiceService {
     return this.apiService.post("/user/authenticate",UserCred);
   }
 
+  UpdatePassword(UserCred:any){
+    return this.apiService.post("/user/updatePassword",UserCred);
+  }
+
   getLoggedInUsername():string{
     return this.loggedInUsername=localStorage.getItem('Username')||'';
   }

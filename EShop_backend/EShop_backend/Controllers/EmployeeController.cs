@@ -22,7 +22,7 @@ namespace EShop_backend.Controllers
         }
 
         [HttpGet("{username}")]
-        public JsonResult GetEmplyeeInfo(string username)
+        public JsonResult GetEmployeeInfo(string username)
         {
             var query = "EXEC GetAdminInfo @username";
 
