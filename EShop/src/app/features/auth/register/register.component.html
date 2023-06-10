@@ -1,5 +1,6 @@
 <div class="register">
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <form nz-form [formGroup]="Register" (ngSubmit)="RegisterUser()">
+    <h3>Bine ai venit!</h3>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName"
         >Prenume</nz-form-label
@@ -9,9 +10,10 @@
         [nzXs]="24"
         nzErrorTip="Introduceti prenumele!"
       >
-        <input nz-input formControlName="email" id="firstName" />
+        <input nz-input formControlName="firstName" id="firstName" />
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName"
         >Nume</nz-form-label
@@ -21,21 +23,29 @@
         [nzXs]="24"
         nzErrorTip="Introduceti numele!"
       >
-        <input nz-input formControlName="email" id="lastName" />
+        <input nz-input formControlName="lastName" id="lastName" />
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email"
-        >E-mail</nz-form-label
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="username"
+        nzRequired
+        nzTooltipTitle="Numele care va aparea in aplicatie"
       >
+        <span>Nume de utilizator</span>
+      </nz-form-label>
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Adresa de e-mail nu este valida!"
+        nzErrorTip="Introduceti numele de utilizator!"
       >
-        <input nz-input formControlName="email" id="email" />
+        <input nz-input id="username" formControlName="username" />
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired
         >Parola</nz-form-label
@@ -75,43 +85,42 @@
         </ng-template>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
-      <nz-form-label
-        [nzSm]="6"
-        [nzXs]="24"
-        nzFor="nickname"
-        nzRequired
-        nzTooltipTitle="Numele care va aparea in aplicatie"
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="emailAddress"
+        >E-mail</nz-form-label
       >
-        <span>Nume de utilizator</span>
-      </nz-form-label>
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Introduceti numele de utilizator!"
+        nzErrorTip="Adresa de e-mail nu este valida!"
       >
-        <input nz-input id="nickname" formControlName="nickname" />
+        <input nz-input formControlName="emailAddress" id="emailAddress" />
       </nz-form-control>
     </nz-form-item>
+    
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNo" nzRequired
         >Numar de telefon</nz-form-label
       >
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        [nzValidateStatus]="validateForm.controls['phoneNumber']"
+        [nzValidateStatus]="Register.controls['phoneNo']"
         nzErrorTip="Introduceti numarul de telefon!"
       >
         <nz-input-group>
-          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+          <input formControlName="phoneNo" id="'phoneNo'" nz-input />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
         <button nz-button nzType="primary">Creeaza cont</button>
       </nz-form-control>
     </nz-form-item>
+
+    <p>Daca ai deja cont, <button nz-button nzType="dashed" (click)="goToLogIn()">autentificare</button></p>
   </form>
 </div>

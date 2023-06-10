@@ -2,10 +2,13 @@
 using EShop_backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -21,11 +24,13 @@ namespace EShop_backend.Controllers
         private readonly dbOnlineShopContext context;
         private readonly JWTSetting setting;
         private readonly IRefreshTokenGenerator tokenGenerator;
-        public UserController(dbOnlineShopContext dbcontext, IOptions<JWTSetting> options, IRefreshTokenGenerator _refreshToken)
+        private readonly IConfiguration _configuration;
+        public UserController(dbOnlineShopContext dbcontext, IOptions<JWTSetting> options, IRefreshTokenGenerator _refreshToken, IConfiguration configuration)
         {
             context = dbcontext;
             setting = options.Value;
             tokenGenerator = _refreshToken;
+            _configuration = configuration;
         }
 
         [NonAction]
@@ -103,6 +108,44 @@ namespace EShop_backend.Controllers
             }
             TokenResponse _result = Authenticate(username, principal.Claims.ToArray());
             return Ok(_result);
+        }
+
+        [Route("Register")]
+        [HttpPost]
+        public IActionResult Register([FromBody] registercred user)
+        {
+            //verifing unique username
+            var _existingUser = context.User.FirstOrDefault(o => o.UserId == user.username);
+            var _existingClient = context.Client.FirstOrDefault(c => c.Username == user.username);
+            if (_existingUser != null && _existingClient!=null)
+                return BadRequest("Numele de utilizator exista deja. Introduceti alt nume");
+            
+            var query = @"EXEC RegisterUser @firstName, @lastName, @username, @password, @emailAddress, @phoneNo";
+            
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+            
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@firstName", user.firstName);
+                    myCommand.Parameters.AddWithValue("@lastName", user.lastName);
+                    myCommand.Parameters.AddWithValue("@username", user.username);
+                    myCommand.Parameters.AddWithValue("@password", user.password);
+                    myCommand.Parameters.AddWithValue("@emailAddress", user.emailAddress);
+                    myCommand.Parameters.AddWithValue("@phoneNo", user.phoneNo);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return Ok(new { message = "Register successfully!" });
         }
     }
 }

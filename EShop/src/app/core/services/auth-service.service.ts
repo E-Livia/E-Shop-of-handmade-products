@@ -14,9 +14,9 @@ export class AuthServiceService {
 
   constructor(private apiService:ApiService, private router:Router) { }
 
-  // registerUser(val: any) {
-  //   return this.httpClient.post(this.APIUrl + '/user', val);
-  // }
+  RegisterUser(UserCred: any) {
+    return this.apiService.post("/user/register",UserCred);
+  }
 
   ProceedLogin(UserCred: any) {
     return this.apiService.post("/user/authenticate",UserCred);
