@@ -35,28 +35,25 @@ img{
 
 .btn-container{
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 75% 20%;
 }
 
-#first-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#fav-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-}
-
-#second-btn{
+#move-to-cart-btn{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+}
+
+#remove-from-wishlist-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+#delete-icon{
+    font-size: 35px;
 }
 
 #cart-btn{

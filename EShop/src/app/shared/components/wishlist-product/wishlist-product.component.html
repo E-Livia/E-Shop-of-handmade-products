@@ -18,11 +18,11 @@
         </div>
         <div class="prod-price">{{ item.price }} lei</div>
         <div class="btn-container">
-          <div id="first-btn">
-            <button mat-raised-button color="warn" id="fav-btn" (click)="goToWishlistPage()"><mat-icon>favorite</mat-icon></button>
+          <div id="move-to-cart-btn">
+            <button mat-raised-button color="primary" id="cart-btn" (click)="moveToCart()">Muta in cos</button>
           </div>
-          <div id="second-btn">
-            <button mat-raised-button color="primary" id="cart-btn" (click)="goToCartPage()">Adauga in cos</button>
+          <div id="remove-from-wishlist-btn">
+            <button mat-icon-button color="primary" (click)="removeFormWishlist()"><mat-icon id="delete-icon">delete_forever</mat-icon></button>
           </div>
         </div>
       </div>

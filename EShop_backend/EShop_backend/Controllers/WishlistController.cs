@@ -21,10 +21,10 @@ namespace EShop_backend.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
-        public JsonResult GetWishlist(int clientId)
+        [HttpGet("{username}")]
+        public JsonResult GetClientWishlist(string username)
         {
-            var query = "EXEC GetWishlist @clientId";
+            var query = "EXEC GetClientWishlist @username";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
@@ -35,7 +35,7 @@ namespace EShop_backend.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@clientId", clientId);
+                    myCommand.Parameters.AddWithValue("@username", username);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
