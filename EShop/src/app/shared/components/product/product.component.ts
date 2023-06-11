@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/core/services/auth-service.service';
+import { CartServiceService } from 'src/app/core/services/cart-service.service';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 import { ProductServiceService } from 'src/app/core/services/product-service.service';
 import { MainPageComponent } from 'src/app/features/main-page/main-page/main-page.component';
@@ -11,10 +13,18 @@ import { MainPageComponent } from 'src/app/features/main-page/main-page/main-pag
 })
 export class ProductComponent implements OnInit {
   categoryName!:string;
-
-  constructor(private service: ProductServiceService, private router: Router, private catService:CategoryServiceService) { }
-
+  loggedInUsername:string;
   ProductList: any = [];
+
+  constructor(private service: ProductServiceService, 
+    private router: Router, 
+    private catService:CategoryServiceService,
+    private cartService:CartServiceService,
+    private authService:AuthServiceService) {
+    this.loggedInUsername=this.authService.getLoggedInUsername();
+
+     }
+
 
   ngOnInit(): void {
     this.catService .selectedCategory$.subscribe(category=>{
@@ -31,8 +41,17 @@ export class ProductComponent implements OnInit {
     this.router.navigateByUrl('/product-details');
   }
 
-  goToCartPage(){
-    this.router.navigate(['/cart']);
+  addToCart(productId:number){
+    this.cartService.addToCart(this.loggedInUsername, productId).subscribe(
+      response => {
+        console.log("Adaugare cu succes:", response);
+        this.router.navigate(['/cart']);
+      },
+      error => {
+        console.error("Eroare la adaugare");
+      }
+    )
+    
   }
 
   goToWishlistPage(){

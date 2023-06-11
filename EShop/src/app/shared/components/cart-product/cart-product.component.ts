@@ -1,24 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductServiceService } from 'src/app/core/services/product-service.service';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/core/services/auth-service.service';
+import { CartServiceService } from 'src/app/core/services/cart-service.service';
 
 @Component({
   selector: 'app-cart-product',
   templateUrl: './cart-product.component.html',
   styleUrls: ['./cart-product.component.scss']
 })
-export class CartProductComponent implements OnInit {
-  constructor(private service: ProductServiceService) { }
+export class CartProductComponent implements OnInit {  
+    ProductList: any = [];
+    loggedInUsername:string;
 
-  ProductList: any = [];
+  constructor(private cartService:CartServiceService, private authService:AuthServiceService, private router:Router) {
+    this.loggedInUsername=this.authService.getLoggedInUsername();
+   }
 
   ngOnInit(): void {
     this.refreshProductList();
   }
 
   refreshProductList() {
-    this.service.getProductList().subscribe(data => {
+    this.cartService.getClientCart(this.loggedInUsername).subscribe(data => {
       this.ProductList = data;
     });
+  }
+
+  removeFromCart(productId:number){
+    this.cartService.removeFromCart(this.loggedInUsername, productId).subscribe(
+      response => {
+        console.log("Stergere cu succes:", response);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/cart']);
+        });
+      },
+      error => {
+        console.error("Eroare la stergere");
+      }
+    )
   }
 
 }

@@ -10,12 +10,12 @@ import { WishlistServiceService } from 'src/app/core/services/wishlist-service.s
 })
 export class WishlistProductComponent implements OnInit {
   loggedInUsername:string;
+  ProductList: any = [];
 
   constructor(private router:Router, private wishlistService:WishlistServiceService, private authService:AuthServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
    }
 
-  ProductList: any = [];
 
   ngOnInit(): void {
     this.displayWishlist();
