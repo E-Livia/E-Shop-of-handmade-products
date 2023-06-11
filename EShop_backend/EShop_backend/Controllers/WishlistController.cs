@@ -46,5 +46,32 @@ namespace EShop_backend.Controllers
 
             return new JsonResult(table);
         }
+
+        [HttpPost("{username}/{productId}")]
+        public JsonResult AddToCart(string username, int productId)
+        {
+            var query = "EXEC AddToWishlist @username, @productId";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@productId", productId);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Added Successfully");
+        }
     }
 }

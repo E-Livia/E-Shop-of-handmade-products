@@ -4,6 +4,7 @@ import { AuthServiceService } from 'src/app/core/services/auth-service.service';
 import { CartServiceService } from 'src/app/core/services/cart-service.service';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 import { ProductServiceService } from 'src/app/core/services/product-service.service';
+import { WishlistServiceService } from 'src/app/core/services/wishlist-service.service';
 import { MainPageComponent } from 'src/app/features/main-page/main-page/main-page.component';
 
 @Component({
@@ -20,7 +21,8 @@ export class ProductComponent implements OnInit {
     private router: Router, 
     private catService:CategoryServiceService,
     private cartService:CartServiceService,
-    private authService:AuthServiceService) {
+    private authService:AuthServiceService,
+    private wishlistService:WishlistServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
 
      }
@@ -54,8 +56,16 @@ export class ProductComponent implements OnInit {
     
   }
 
-  goToWishlistPage(){
-    this.router.navigate(['/wishlist']);
+  addToWishlist(productId:number){
+    this.wishlistService.addToWishlist(this.loggedInUsername, productId).subscribe(
+      response => {
+        console.log("Adaugare cu succes:", response);
+        this.router.navigate(['/wishlist']);
+      },
+      error => {
+        console.error("Eroare la adaugare");
+      }
+    )
   }
 
   refreshProductList() {
