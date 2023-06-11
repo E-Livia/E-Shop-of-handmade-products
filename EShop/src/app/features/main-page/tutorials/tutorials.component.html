@@ -1,0 +1,19 @@
+<div class="tutorials">
+    <div class="title">
+        <h2>In curs de implementare...</h2>
+    </div>
+    <div class="content">
+        <p>Nu exista date disponibile, dar va oferim cateva tutoriale disponibile pe youtube:</p>
+        <table *ngFor="let item of tutorialsContent">
+            <tr>
+                {{item.name}}
+            </tr>
+            <tr>
+                Credite: {{item.credits}}
+            </tr>
+            <tr>
+               <a href="item.link">{{item.link}}</a> 
+            </tr>
+        </table>
+    </div>
+</div>

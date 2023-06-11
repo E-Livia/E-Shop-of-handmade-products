@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
 import { AboutComponent } from './about/about.component';
+import { TutorialsComponent } from './tutorials/tutorials.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AboutComponent } from './about/about.component';
     ProfileComponent,
     WishlistComponent,
     CartComponent,
-    AboutComponent
+    AboutComponent,
+    TutorialsComponent
   ],
   imports: [
     CommonModule,

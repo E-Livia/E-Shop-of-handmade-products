@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CategoryServiceService } from 'src/app/core/services/category-service.s
 export class MainPageComponent implements OnInit {
 // obj!:Interface;
   selectedCategory:string='';
-  constructor(private categoryService:CategoryServiceService) { }
+  constructor(private categoryService:CategoryServiceService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +18,9 @@ export class MainPageComponent implements OnInit {
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.categoryService.setSelectedCategory(category);
+  }
+
+  goToTutorials(){
+    this.router.navigate(['tutorials']);
   }
 }

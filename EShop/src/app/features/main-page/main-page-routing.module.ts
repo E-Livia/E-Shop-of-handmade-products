@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { ProductDetailsComponent } from 'src/app/shared/components/product-details/product-details.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { OrderDetailsComponent } from 'src/app/shared/components/order-details/order-details.component';
+import { TutorialsComponent } from './tutorials/tutorials.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path:'cart/order-details',
     component:OrderDetailsComponent
+  },
+  {
+    path:'tutorials',
+    component:TutorialsComponent
   }
 ];
 
