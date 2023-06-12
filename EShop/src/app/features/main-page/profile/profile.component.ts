@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/core/services/auth-service.service';
+import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 import { ClientServiceService } from 'src/app/core/services/client-service.service';
 
 @Component({
@@ -25,9 +26,10 @@ export class ProfileComponent implements OnInit {
   logOut = () => {
     localStorage.removeItem("token");
     this.router.navigate(['auth']);
+    this.cateoryService.setSelectedCategory("");
   }
 
-  constructor(private router:Router, private authService:AuthServiceService,private clientService:ClientServiceService) {
+  constructor(private router:Router, private authService:AuthServiceService,private clientService:ClientServiceService, private cateoryService:CategoryServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
     this.loggedInRole=this.authService.getLoggedInRole();
    }

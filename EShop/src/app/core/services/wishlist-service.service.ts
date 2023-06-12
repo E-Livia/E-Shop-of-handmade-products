@@ -18,4 +18,8 @@ export class WishlistServiceService{
     addToWishlist(username:string, productId:number){
       return this.apiService.post(`/api/wishlist/${username}/${productId}`);
     }
+
+    removeFromWishlist(username:string, productId:number){
+      return this.apiService.delete(`/api/wishlist/${username}/${productId}`);
+    }
 }

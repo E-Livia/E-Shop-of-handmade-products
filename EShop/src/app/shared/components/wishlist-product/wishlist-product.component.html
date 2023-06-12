@@ -7,22 +7,22 @@
   
   <ng-template #dataTemplate>
     <ng-container *ngFor="let item of ProductList">
-      <div class="product-card" (click)="goToProductDetails()">
+      <div class="product-card">
         <div class="prod-img">
-          <img
+          <img (click)="goToProductDetails()"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
           />
         </div>
-        <div class="prod-name">
+        <div class="prod-name" (click)="goToProductDetails()">
           {{ item.name }}
         </div>
         <div class="prod-price">{{ item.price }} lei</div>
         <div class="btn-container">
           <div id="move-to-cart-btn">
-            <button mat-raised-button color="primary" id="cart-btn" (click)="moveToCart()">Muta in cos</button>
+            <button mat-raised-button color="primary" id="cart-btn" (click)="moveToCart(item.productId)">Muta in cos</button>
           </div>
           <div id="remove-from-wishlist-btn">
-            <button mat-icon-button color="primary" (click)="removeFormWishlist()"><mat-icon id="delete-icon">delete_forever</mat-icon></button>
+            <button mat-icon-button color="primary" (click)="removeFormWishlist(item.productId)" ><mat-icon id="delete-icon">delete_forever</mat-icon></button>
           </div>
         </div>
       </div>

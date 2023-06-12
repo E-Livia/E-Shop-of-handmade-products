@@ -21,7 +21,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -59,7 +59,8 @@ import { WishlistProductComponent } from './components/wishlist-product/wishlist
     MatCheckboxModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NzPopoverModule
   ],
   exports:[
     NzButtonModule,
@@ -87,7 +88,8 @@ import { WishlistProductComponent } from './components/wishlist-product/wishlist
     MatInputModule,
     AdminHeaderComponent,
     OrderDetailsComponent,
-    WishlistProductComponent
+    WishlistProductComponent,
+    NzPopoverModule
   ]
 })
 export class SharedModule { }
