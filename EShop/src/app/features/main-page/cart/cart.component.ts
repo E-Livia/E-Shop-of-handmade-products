@@ -40,7 +40,8 @@ export class CartComponent implements OnInit {
   }
 
   getCartPrice(){
-    console.log(this.totalPrice);
+    if(this.totalPrice>=200)
+      this.transportPrice=0;
     return this.cartPrice=this.totalPrice+this.transportPrice;
   }
 

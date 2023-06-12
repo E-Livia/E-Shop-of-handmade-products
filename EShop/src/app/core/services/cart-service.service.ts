@@ -27,6 +27,6 @@ export class CartServiceService{
       return this.apiService.get(`/api/cart/totalPrice/${username}`)
       .pipe(
         map((response: any) => response[0])
-      );;
+      );
     }
 }

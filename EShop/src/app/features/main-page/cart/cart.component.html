@@ -22,7 +22,10 @@
             <td>{{totalPrice}} lei</td>
           </tr>
           <tr>
-            <td><button mat-icon-button><mat-icon>info</mat-icon></button>Costuri transport</td>
+            <td><button mat-icon-button nz-popover
+              nzPopoverContent="Pentru comenzi mai mari de 200 lei, transport gratuit"><mat-icon>info</mat-icon></button>
+              Costuri transport
+            </td>
             <td>{{transportPrice}} lei</td>
           </tr>
           <tr>

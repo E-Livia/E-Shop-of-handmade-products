@@ -16,13 +16,15 @@ export class ProductComponent implements OnInit {
   categoryName!:string;
   loggedInUsername:string;
   ProductList: any = [];
+  selectedProduct: number=0;
 
   constructor(private service: ProductServiceService, 
     private router: Router, 
     private catService:CategoryServiceService,
     private cartService:CartServiceService,
     private authService:AuthServiceService,
-    private wishlistService:WishlistServiceService) {
+    private wishlistService:WishlistServiceService,
+    private productService:ProductServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
 
      }
@@ -78,5 +80,9 @@ export class ProductComponent implements OnInit {
     this.service.getProductByCategory(category).subscribe(data=>{
       this.ProductList=data;
     })
+  }
+
+  selectProduct(productId: number) {
+    this.router.navigate(['product-details',productId]);
   }
 }

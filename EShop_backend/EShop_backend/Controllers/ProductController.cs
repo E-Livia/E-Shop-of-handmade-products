@@ -79,6 +79,32 @@ namespace EShop_backend.Controllers
             return new JsonResult("Added Successfully");
         }
 
+        [Route("{productId}")]
+        [HttpGet]
+        public JsonResult GetProductById(int productId)
+        {
+            var query = "EXEC GetProductById @productId";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@productId", productId);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
 
         [Route("categories/{categoryName}")]
         [HttpGet]

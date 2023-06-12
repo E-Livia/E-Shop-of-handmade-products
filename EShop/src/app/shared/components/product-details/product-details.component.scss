@@ -1,0 +1,53 @@
+.main {
+    background-color: rgb(204, 247, 226);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 7% 93%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.content{
+    display: grid;
+    grid-template-rows: 10% 65% 25%;
+}
+
+#product-name{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-left: 50px;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+#product-details{
+    display: grid;
+    grid-template-columns: 50% 10% 40%;
+}
+
+#product-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#product-delivery{
+
+}
+
+#price-and-btn-container{
+
+}
+
+p{
+    padding-left: 20px;
+    font-size: 15px;
+}
