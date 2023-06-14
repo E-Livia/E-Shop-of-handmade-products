@@ -40,11 +40,7 @@ export class ProductComponent implements OnInit {
       }
     })
   }
-
-  goToProductDetails(){
-    this.router.navigateByUrl('/product-details');
-  }
-
+  
   addToCart(productId:number){
     this.cartService.addToCart(this.loggedInUsername, productId).subscribe(
       response => {
@@ -59,6 +55,7 @@ export class ProductComponent implements OnInit {
   }
 
   addToWishlist(productId:number){
+    console.log(productId);
     this.wishlistService.addToWishlist(this.loggedInUsername, productId).subscribe(
       response => {
         console.log("Adaugare cu succes:", response);

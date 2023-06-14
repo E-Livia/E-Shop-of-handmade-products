@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  selector: 'app-category-main-page',
+  templateUrl: './category-main-page.component.html',
+  styleUrls: ['./category-main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class CategoryMainPageComponent implements OnInit {
   selectedCategory:string='';
   constructor(private categoryService:CategoryServiceService, private router:Router) { }
 

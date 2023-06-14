@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from 'src/app/shared/components/product-detai
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { OrderDetailsComponent } from 'src/app/shared/components/order-details/order-details.component';
 import { TutorialsComponent } from './tutorials/tutorials.component';
+import { CategoryMainPageComponent } from './category-main-page/category-main-page.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path:'tutorials',
     component:TutorialsComponent
+  },
+  {
+    path:'main-page/category/:categoryName',
+    component:CategoryMainPageComponent
   }
 ];
 

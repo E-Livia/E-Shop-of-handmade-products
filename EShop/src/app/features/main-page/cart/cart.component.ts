@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/core/services/auth-service.service';
 import { CartServiceService } from 'src/app/core/services/cart-service.service';
+import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,13 +14,21 @@ export class CartComponent implements OnInit {
   totalPrice:number=0;
   transportPrice:number=15;
   cartPrice:number=0;
+  categoryName!:string;
 
-  constructor(private router:Router, private cartService:CartServiceService,private authService:AuthServiceService) {
+  constructor(private router:Router, private cartService:CartServiceService,private authService:AuthServiceService, private catService:CategoryServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
    }
   
   continueShopping(){
-    this.router.navigate(['/main-page']);
+    this.catService .selectedCategory$.subscribe(category=>{
+      this.categoryName=category;
+      if(this.categoryName){
+        this.router.navigate(['main-page/category',this.categoryName])
+      }else{
+        this.router.navigate(['/main-page']);
+      }
+    })
   }
 
   proceedOrder(){

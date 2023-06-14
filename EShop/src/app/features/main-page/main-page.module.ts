@@ -9,6 +9,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
 import { AboutComponent } from './about/about.component';
 import { TutorialsComponent } from './tutorials/tutorials.component';
+import { CategoryMainPageComponent } from './category-main-page/category-main-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TutorialsComponent } from './tutorials/tutorials.component';
     WishlistComponent,
     CartComponent,
     AboutComponent,
-    TutorialsComponent
+    TutorialsComponent,
+    CategoryMainPageComponent
   ],
   imports: [
     CommonModule,

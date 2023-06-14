@@ -7,6 +7,7 @@
     <div id="left-sider">
       <h1 id="sider-title">Catalog</h1>
       <ul nz-menu nzMode="inline">
+        <li nz-menu-item (click)="allProducts()">Toate produsele</li>
         <li nz-submenu nzTitle="Articole pentru evenimente">
           <ul>
             <li nz-menu-item (click)="selectCategory('Dragobete')">Valentine's day si Dragobete</li>

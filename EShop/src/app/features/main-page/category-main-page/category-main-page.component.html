@@ -1,0 +1,119 @@
+<div class="main-layout">
+    <div class="header">
+      <app-header-component></app-header-component>
+    </div>
+  
+    <div class="main">
+      <div id="left-sider">
+        <h1 id="sider-title">Catalog</h1>
+        <ul nz-menu nzMode="inline">
+        <li nz-menu-item (click)="allProducts()">Toate produsele</li>
+          <li nz-submenu nzTitle="Articole pentru evenimente">
+            <ul>
+              <li nz-menu-item (click)="selectCategory('Dragobete')">Valentine's day si Dragobete</li>
+              <li nz-menu-item (click)="selectCategory('Martisor')">Martisor</li>
+              <li nz-menu-item (click)="selectCategory('Paste')">Paste</li>
+              <li nz-menu-item (click)="selectCategory('Craciun')">Craciun</li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Materiale">
+            <ul>
+              <li nz-menu-item (click)="selectCategory('Argila polimerica')">Argila polimerica</li>
+              <li nz-menu-item (click)="selectCategory('Ambalaje')">Ambalaje</li>
+              <li nz-menu-item (click)="selectCategory('Paiete')">Paiete</li>
+              <li nz-submenu nzTitle="Margele">
+                <ul>
+                  <li nz-menu-item (click)="selectCategory('Margele din lemn')">Margele din lemn</li>
+                  <li nz-menu-item (click)="selectCategory('Margele FIMO')">Margele FIMO</li>
+                  <li nz-menu-item (click)="selectCategory('Margele plastic')">Margele din plastic</li>
+                  <li nz-menu-item (click)="selectCategory('Margele metalice')">Margele metalice</li>
+                </ul>
+              </li>
+              <li nz-menu-item (click)="selectCategory('Pietre semipretioase')">Pietre semipretioase</li>
+              <li nz-submenu nzTitle="Accesorii">
+                <ul>
+                  <li nz-menu-item (click)="selectCategory('Ace insirat margele')">Ace de insirat margele</li>
+                  <li nz-menu-item (click)="selectCategory('Agrafe baze brose')">Agrafe, baze pentru brose</li>
+                  <li nz-menu-item (click)="selectCategory('Baze brelocuri')">Baze pentru brelocuri</li>
+                  <li nz-menu-item (click)="selectCategory('Cadru inele')">Cadru inele</li>
+                  <li nz-menu-item (click)="selectCategory('Clipsuri catarame')">Clipsuri, catarame</li>
+                  <li nz-menu-item (click)="selectCategory('Lanturi pandantive')">Lanturi, pandantive, baze coliere</li>
+                  <li nz-menu-item (click)="selectCategory('Suporti cercei')">Suporti, tortite cercei</li>
+                  <li nz-menu-item (click)="selectCategory('Zale')">Zale</li>
+                  <li nz-menu-item (click)="selectCategory('Incuietori')">Incuietori</li>
+                  <li nz-menu-item (click)="selectCategory('Ate fire')">
+                    Ate, fire, snururi, piele, panglici, elastice
+                  </li>
+                  <li nz-menu-item (click)="selectCategory('Sarma')">Sarma modelaj, fir otel, sarma cu memorie</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Bijuterii">
+            <ul>
+              <li nz-menu-item (click)="selectCategory('Cercei')">Cercei</li>
+              <li nz-menu-item (click)="selectCategory('Inele')">Inele</li>
+              <li nz-menu-item (click)="selectCategory('Brose')">Brose</li>
+              <li nz-menu-item (click)="selectCategory('Lantisoare')">Lantisoare</li>
+              <li nz-menu-item (click)="selectCategory('Bratari')">Bratari</li>
+              <li nz-menu-item (click)="selectCategory('Pandantive')">Pandantive</li>
+              <li nz-menu-item (click)="selectCategory('Piercinguri')">Piercinguri</li>
+              <li nz-menu-item (click)="selectCategory('Accesorii par')">Accesorii de par</li>
+              <li nz-menu-item (click)="selectCategory('Brelocuri')">Brelocuri</li>
+            </ul>
+          </li>
+          <li nz-menu-item (click)="goToTutorials()">Tutoriale</li>
+        </ul>
+      </div>
+  
+      <div class="main-content">
+        <div id="filter-bar">
+          <label>Sortare</label>
+          <a class="dropdown" nz-dropdown [nzDropdownMenu]="menu">
+            Implicit
+            <span class="material-icons">arrow_drop_down</span>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>Nume (A>Z)</li>
+              <li nz-menu-item>Nume (Z>A)</li>
+              <li nz-menu-item>Pret crescator</li>
+              <li nz-menu-item>Pret descrescator</li>
+            </ul>
+          </nz-dropdown-menu>
+  
+          <label>Filtrare</label>
+          <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuPret">
+            Pret
+            <span class="material-icons">arrow_drop_down</span>
+          </a>
+          <nz-dropdown-menu #menuPret="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>0-20 lei</li>
+              <li nz-menu-item>20-50 lei</li>
+              <li nz-menu-item>50-100 lei</li>
+              <li nz-menu-item>100+ lei</li>
+            </ul>
+          </nz-dropdown-menu>
+  
+          <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuMaterial">
+            Material
+            <span class="material-icons">arrow_drop_down</span>
+          </a>
+          <nz-dropdown-menu #menuMaterial="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>0-20 lei</li>
+              <li nz-menu-item>20-50 lei</li>
+              <li nz-menu-item>50-100 lei</li>
+              <li nz-menu-item>100+ lei</li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+  
+        <div id="content-table">
+          <app-product class="product-item"></app-product>
+        </div>
+      </div>
+    </div>
+  </div>
+  
