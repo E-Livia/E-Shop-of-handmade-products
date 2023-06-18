@@ -7,10 +7,11 @@
  <ng-template #dataTemplate>
 <div class="card" *ngFor="let item of ProductList">
  <div class="img">
-    <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+    <img
+    (click)="selectProduct(item.productId)" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
  </div>
  <div class="details">
-    <div class="product-name">{{item.name}}</div>
+    <div class="product-name" (click)="selectProduct(item.productId)">{{item.name}}</div>
     <div class="product-desc">{{item.description}}</div>
     <!-- <div class="product-materials">{{item.mat}}</div> -->
  </div>

@@ -40,4 +40,8 @@ export class CartProductComponent implements OnInit {
     )
   }
 
+  selectProduct(productId: number) {
+    this.router.navigate(['product-details',productId]);
+  }
+
 }

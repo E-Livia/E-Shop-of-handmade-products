@@ -46,6 +46,54 @@ namespace EShop_backend.Controllers
             return new JsonResult(table);
         }
 
+        [HttpGet("{categoryParent}")]
+        public JsonResult GetAllCategoryByParent(string categoryParent)
+        {
+            var query = "EXEC GetCategoriesByParent @categoryParent";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@categoryParent", categoryParent);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [Route("parentsForCategories")]
+        [HttpGet]
+        public JsonResult GetParentsForCategories ()
+        {
+            var query = "EXEC GetParentsForCategories";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         [HttpPost]
         public JsonResult InsertCategory(Category cat)
         {

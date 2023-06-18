@@ -7,61 +7,30 @@
       <div id="left-sider">
         <h1 id="sider-title">Catalog</h1>
         <ul nz-menu nzMode="inline">
-        <li nz-menu-item (click)="allProducts()">Toate produsele</li>
-          <li nz-submenu nzTitle="Articole pentru evenimente">
-            <ul>
-              <li nz-menu-item (click)="selectCategory('Dragobete')">Valentine's day si Dragobete</li>
-              <li nz-menu-item (click)="selectCategory('Martisor')">Martisor</li>
-              <li nz-menu-item (click)="selectCategory('Paste')">Paste</li>
-              <li nz-menu-item (click)="selectCategory('Craciun')">Craciun</li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Materiale">
-            <ul>
-              <li nz-menu-item (click)="selectCategory('Argila polimerica')">Argila polimerica</li>
-              <li nz-menu-item (click)="selectCategory('Ambalaje')">Ambalaje</li>
-              <li nz-menu-item (click)="selectCategory('Paiete')">Paiete</li>
-              <li nz-submenu nzTitle="Margele">
-                <ul>
-                  <li nz-menu-item (click)="selectCategory('Margele din lemn')">Margele din lemn</li>
-                  <li nz-menu-item (click)="selectCategory('Margele FIMO')">Margele FIMO</li>
-                  <li nz-menu-item (click)="selectCategory('Margele plastic')">Margele din plastic</li>
-                  <li nz-menu-item (click)="selectCategory('Margele metalice')">Margele metalice</li>
-                </ul>
-              </li>
-              <li nz-menu-item (click)="selectCategory('Pietre semipretioase')">Pietre semipretioase</li>
-              <li nz-submenu nzTitle="Accesorii">
-                <ul>
-                  <li nz-menu-item (click)="selectCategory('Ace insirat margele')">Ace de insirat margele</li>
-                  <li nz-menu-item (click)="selectCategory('Agrafe baze brose')">Agrafe, baze pentru brose</li>
-                  <li nz-menu-item (click)="selectCategory('Baze brelocuri')">Baze pentru brelocuri</li>
-                  <li nz-menu-item (click)="selectCategory('Cadru inele')">Cadru inele</li>
-                  <li nz-menu-item (click)="selectCategory('Clipsuri catarame')">Clipsuri, catarame</li>
-                  <li nz-menu-item (click)="selectCategory('Lanturi pandantive')">Lanturi, pandantive, baze coliere</li>
-                  <li nz-menu-item (click)="selectCategory('Suporti cercei')">Suporti, tortite cercei</li>
-                  <li nz-menu-item (click)="selectCategory('Zale')">Zale</li>
-                  <li nz-menu-item (click)="selectCategory('Incuietori')">Incuietori</li>
-                  <li nz-menu-item (click)="selectCategory('Ate fire')">
-                    Ate, fire, snururi, piele, panglici, elastice
+          <li nz-menu-item (click)="allProducts()">Toate produsele</li>
+          <ng-container *ngFor="let item of parentList">
+            <li nz-submenu *ngIf="item.categoryParent!=='Margele'" nzTitle={{item.categoryParent}}>
+              <ul>
+                <ng-container *ngIf="item.categoryParent !== 'Margele'">
+                  <li nz-menu-item *ngFor="let cat of categoryList[item.categoryParent]" (click)="selectCategory(cat.categoryName)"
+                  [style.display]="cat.categoryName !== 'Margele' ? 'list-item' : 'none'">
+                    {{cat.categoryName}}
                   </li>
-                  <li nz-menu-item (click)="selectCategory('Sarma')">Sarma modelaj, fir otel, sarma cu memorie</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Bijuterii">
-            <ul>
-              <li nz-menu-item (click)="selectCategory('Cercei')">Cercei</li>
-              <li nz-menu-item (click)="selectCategory('Inele')">Inele</li>
-              <li nz-menu-item (click)="selectCategory('Brose')">Brose</li>
-              <li nz-menu-item (click)="selectCategory('Lantisoare')">Lantisoare</li>
-              <li nz-menu-item (click)="selectCategory('Bratari')">Bratari</li>
-              <li nz-menu-item (click)="selectCategory('Pandantive')">Pandantive</li>
-              <li nz-menu-item (click)="selectCategory('Piercinguri')">Piercinguri</li>
-              <li nz-menu-item (click)="selectCategory('Accesorii par')">Accesorii de par</li>
-              <li nz-menu-item (click)="selectCategory('Brelocuri')">Brelocuri</li>
-            </ul>
-          </li>
+                </ng-container>
+                <ng-container *ngIf="item.categoryParent === 'Materiale'">
+                  <li nz-submenu nzTitle="Margele">
+                    <ul>
+                      <li nz-menu-item *ngFor="let cat of categoryList['Margele']" (click)="selectCategory(cat.categoryName)">
+                        {{cat.categoryName}}
+                      </li>
+                    </ul>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+  
+          </ng-container>
+          
           <li nz-menu-item (click)="goToTutorials()">Tutoriale</li>
         </ul>
       </div>
