@@ -106,6 +106,33 @@ namespace EShop_backend.Controllers
             return new JsonResult(table);
         }
 
+        [Route("search/{text}")]
+        [HttpGet]
+        public JsonResult Search(string text)
+        {
+            var query = "EXEC Search @text";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@text", text);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         [Route("categories/{categoryName}")]
         [HttpGet]
         public JsonResult GetProductByCategory(string categoryName)

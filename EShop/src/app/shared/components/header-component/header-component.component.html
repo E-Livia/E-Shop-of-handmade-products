@@ -11,10 +11,12 @@
             type="text"
             nz-input
             placeholder="search item"
+            [(ngModel)]="searchText"
+            (keyup.enter)="setTextForSearch()"
           />
         </nz-input-group>
         <ng-template #suffixIconButton>
-          <button nz-button nzType="primary" nzSearch class="search-btn">
+          <button nz-button nzType="primary" nzSearch class="search-btn" (click)="setTextForSearch()">
             <mat-icon>search</mat-icon>
           </button>
         </ng-template>

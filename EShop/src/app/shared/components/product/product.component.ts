@@ -14,11 +14,12 @@ import { MainPageComponent } from 'src/app/features/main-page/main-page/main-pag
 })
 export class ProductComponent implements OnInit {
   categoryName!:string;
+  searchedProd!:string;
   loggedInUsername:string;
   ProductList: any = [];
   selectedProduct: number=0;
 
-  constructor(private service: ProductServiceService, 
+  constructor( 
     private router: Router, 
     private catService:CategoryServiceService,
     private cartService:CartServiceService,
@@ -37,6 +38,12 @@ export class ProductComponent implements OnInit {
         this.GetProductsByCategory(this.categoryName)
       }else{
         this.refreshProductList();
+      }
+    });
+    this.productService.searchProd$.subscribe(inputText=>{
+      this.searchedProd=inputText;
+      if(this.searchedProd){
+        this.getSearchProducts(this.searchedProd);
       }
     })
   }
@@ -68,18 +75,24 @@ export class ProductComponent implements OnInit {
   }
 
   refreshProductList() {
-    this.service.getProductList().subscribe(data => {
+    this.productService.getProductList().subscribe(data => {
       this.ProductList = data;
     });
   }
 
   GetProductsByCategory(category:string){
-    this.service.getProductByCategory(category).subscribe(data=>{
+    this.productService.getProductByCategory(category).subscribe(data=>{
       this.ProductList=data;
     })
   }
 
   selectProduct(productId: number) {
     this.router.navigate(['product-details',productId]);
+  }
+
+  getSearchProducts(searchText:string){
+      this.productService.searchProduct(searchText).subscribe(data=>{
+        this.ProductList=data;
+      })
   }
 }

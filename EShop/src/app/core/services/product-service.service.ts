@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { ApiService } from './api-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
+  private searchProducts = new BehaviorSubject<string>('');
+    searchProd$ = this.searchProducts.asObservable();
 
   readonly APIUrl="https://localhost:44376/api";
 
@@ -29,5 +31,13 @@ export class ProductServiceService {
     return this.apiService.get(`/api/product/${productId}`).pipe(
       map((response: any) => response[0])
     );
+  }
+
+  searchProduct(text:string):Observable<any[]>{
+    return this.apiService.get(`/api/product/search/${text}`);
+  }
+
+  setSearchText(value:string){
+    this.searchProducts.next(value);
   }
 }

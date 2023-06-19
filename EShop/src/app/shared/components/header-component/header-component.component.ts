@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { ProductServiceService } from 'src/app/core/services/product-service.service';
 
 @Component({
   selector: 'app-header-component',
@@ -7,6 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-component.component.scss']
 })
 export class HeaderComponentComponent implements OnInit {
+  searchText: string = '';
+  productList:any;
+  private insertedSearch = new BehaviorSubject<any>('');
+  selectedCategory$ = this.insertedSearch.asObservable();
+  
+  constructor(private router: Router, private productService:ProductServiceService) { }
+  
   goToAboutPage() {
     this.router.navigate(['/about']);
   }
@@ -23,9 +32,13 @@ export class HeaderComponentComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  setTextForSearch(){
+    this.productService.setSearchText(this.searchText);
+    this.router.navigate(['main-page']);
   }
 
 }

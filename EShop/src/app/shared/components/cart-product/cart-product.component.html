@@ -12,7 +12,7 @@
  </div>
  <div class="details">
     <div class="product-name" (click)="selectProduct(item.productId)">{{item.name}}</div>
-    <div class="product-desc">{{item.description}}</div>
+    <div class="product-desc" (click)="selectProduct(item.productId)">{{item.description}}</div>
     <!-- <div class="product-materials">{{item.mat}}</div> -->
  </div>
  <div class="price">
