@@ -26,6 +26,7 @@ namespace EShop_backend.Models
         public double Price { get; set; }
         public string Credits { get; set; }
         public bool? Active { get; set; }
+        public string ImagePath { get; set; }
 
         public virtual ICollection<CartProduct> CartProduct { get; set; }
         public virtual ICollection<Inventory> Inventory { get; set; }

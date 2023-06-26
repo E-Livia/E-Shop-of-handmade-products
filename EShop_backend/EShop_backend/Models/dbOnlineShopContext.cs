@@ -37,8 +37,6 @@ namespace EShop_backend.Models
         public virtual DbSet<ProductMaterial> ProductMaterial { get; set; }
         public virtual DbSet<ProductOrder> ProductOrder { get; set; }
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
-        public virtual DbSet<UnregisteredClientAddress> UnregisteredClientAddress { get; set; }
-        public virtual DbSet<UnregisteredClientOrder> UnregisteredClientOrder { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Wishlist> Wishlist { get; set; }
         public virtual DbSet<WishlistProduct> WishlistProduct { get; set; }
@@ -60,7 +58,9 @@ namespace EShop_backend.Models
 
                 entity.Property(e => e.ClientId).HasColumnName("clientId");
 
-                entity.Property(e => e.TotalPrice).HasColumnName("totalPrice");
+                entity.Property(e => e.TotalPrice)
+                    .HasColumnName("totalPrice")
+                    .HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Cart)
@@ -102,6 +102,11 @@ namespace EShop_backend.Models
                 entity.Property(e => e.CategoryName)
                     .IsRequired()
                     .HasColumnName("categoryName")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CategoryParent)
+                    .IsRequired()
+                    .HasColumnName("categoryParent")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Description)
@@ -423,6 +428,11 @@ namespace EShop_backend.Models
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ImagePath)
+                    .HasColumnName("imagePath")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnName("name")
@@ -555,60 +565,6 @@ namespace EShop_backend.Models
                     .HasColumnName("tokenId")
                     .HasMaxLength(50)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<UnregisteredClientAddress>(entity =>
-            {
-                entity.HasKey(e => e.UClientNo);
-
-                entity.Property(e => e.UClientNo)
-                    .HasColumnName("uClientNo")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.UAddressLine)
-                    .IsRequired()
-                    .HasColumnName("uAddressLine")
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.UCity)
-                    .IsRequired()
-                    .HasColumnName("uCity")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.UCountry)
-                    .IsRequired()
-                    .HasColumnName("uCountry")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.UPostalCode).HasColumnName("uPostalCode");
-            });
-
-            modelBuilder.Entity<UnregisteredClientOrder>(entity =>
-            {
-                entity.HasKey(e => e.UClientOrderId);
-
-                entity.Property(e => e.UClientOrderId).HasColumnName("uClientOrderId");
-
-                entity.Property(e => e.Active)
-                    .IsRequired()
-                    .HasColumnName("active")
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.OrderId).HasColumnName("orderID");
-
-                entity.Property(e => e.UClientNo).HasColumnName("uClientNo");
-
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.UnregisteredClientOrder)
-                    .HasForeignKey(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UnregisteredClientOrder_Order");
-
-                entity.HasOne(d => d.UClientNoNavigation)
-                    .WithMany(p => p.UnregisteredClientOrder)
-                    .HasForeignKey(d => d.UClientNo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UnregisteredClientOrder_UnregisteredClientAddress");
             });
 
             modelBuilder.Entity<User>(entity =>

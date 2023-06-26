@@ -29,4 +29,8 @@ export class CartServiceService{
         map((response: any) => response[0])
       );
     }
+
+    decreaseProductQuantity(username:string, productId:number){
+      return this.apiService.delete(`/api/cart/decrease/${username}/${productId}`);
+    }
 }

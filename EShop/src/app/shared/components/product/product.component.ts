@@ -77,6 +77,7 @@ export class ProductComponent implements OnInit {
   refreshProductList() {
     this.productService.getProductList().subscribe(data => {
       this.ProductList = data;
+      console.log(this.ProductList)
     });
   }
 
@@ -95,4 +96,5 @@ export class ProductComponent implements OnInit {
         this.ProductList=data;
       })
   }
+
 }

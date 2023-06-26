@@ -97,7 +97,7 @@ namespace EShop_backend.Controllers
 
             if (_token != null && _token.Header.Alg.Equals(SecurityAlgorithms.HmacSha256))
             {
-                //return Unauthorized(); --cu asta comentat merge
+                //return Unauthorized(); //works while this is commented
             }
 
             var username = principal.Identity.Name;

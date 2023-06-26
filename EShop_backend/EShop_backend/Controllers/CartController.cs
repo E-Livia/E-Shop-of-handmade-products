@@ -129,6 +129,34 @@ namespace EShop_backend.Controllers
             return new JsonResult("Removed Successfully");
         }
 
+        [Route("decrease/{username}/{productId}")]
+        [HttpDelete]
+        public JsonResult DecreaseQuantityFromCart(string username, int productId)
+        {
+            var query = "EXEC DecreaseQuantityFromCart @username, @productId";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@productId", productId);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Removed Successfully");
+        }
+
         // PUT api/<CartController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

@@ -14,7 +14,6 @@ namespace EShop_backend.Models
             ClientOrder = new HashSet<ClientOrder>();
             EmployeeOrder = new HashSet<EmployeeOrder>();
             ProductOrder = new HashSet<ProductOrder>();
-            UnregisteredClientOrder = new HashSet<UnregisteredClientOrder>();
         }
 
         public int OrderId { get; set; }
@@ -26,6 +25,5 @@ namespace EShop_backend.Models
         public virtual ICollection<ClientOrder> ClientOrder { get; set; }
         public virtual ICollection<EmployeeOrder> EmployeeOrder { get; set; }
         public virtual ICollection<ProductOrder> ProductOrder { get; set; }
-        public virtual ICollection<UnregisteredClientOrder> UnregisteredClientOrder { get; set; }
     }
 }

@@ -44,4 +44,32 @@ export class CartProductComponent implements OnInit {
     this.router.navigate(['product-details',productId]);
   }
 
+
+  increaseQuantity(productId:number){
+    this.cartService.addToCart(this.loggedInUsername,productId).subscribe(
+      response => {
+        console.log("Added successfully:", response);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/cart']);
+        });
+      },
+      error => {
+        console.error("Error");
+      }
+    );
+  }
+
+  decreaseQuantity(productId:number){
+    this.cartService.decreaseProductQuantity(this.loggedInUsername,productId).subscribe(
+      response => {
+        console.log("Stergere cu succes:", response);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/cart']);
+        });
+      },
+      error => {
+        console.error("Eroare la stergere");
+      }
+    );
+  }
 }

@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { WishlistProductComponent } from './components/wishlist-product/wishlist-product.component';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { WishlistProductComponent } from './components/wishlist-product/wishlist
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    NzPopoverModule
+    NzPopoverModule,
+    NzInputNumberModule
   ],
   exports:[
     NzButtonModule,
@@ -89,7 +91,8 @@ import { WishlistProductComponent } from './components/wishlist-product/wishlist
     AdminHeaderComponent,
     OrderDetailsComponent,
     WishlistProductComponent,
-    NzPopoverModule
+    NzPopoverModule,
+    NzInputNumberModule
   ]
 })
 export class SharedModule { }

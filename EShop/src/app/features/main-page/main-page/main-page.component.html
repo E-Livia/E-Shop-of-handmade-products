@@ -9,11 +9,11 @@
       <ul nz-menu nzMode="inline">
         <li nz-menu-item (click)="allProducts()">Toate produsele</li>
         <ng-container *ngFor="let item of parentList">
-          <li nz-submenu *ngIf="item.categoryParent!=='Margele'" nzTitle={{item.categoryParent}}>
+          <li nz-submenu *ngIf="item.categoryParent!=='Margele'  && item.categoryParent !== 'Accesorii'" nzTitle={{item.categoryParent}}>
             <ul>
-              <ng-container *ngIf="item.categoryParent !== 'Margele'">
+              <ng-container *ngIf="item.categoryParent !== 'Margele' && item.categoryParent !== 'Accesorii'">
                 <li nz-menu-item *ngFor="let cat of categoryList[item.categoryParent]" (click)="selectCategory(cat.categoryName)"
-                [style.display]="cat.categoryName !== 'Margele' ? 'list-item' : 'none'">
+                [style.display]="cat.categoryName !== 'Margele'  && cat.categoryName !== 'Accesorii' ? 'list-item' : 'none'">
                   {{cat.categoryName}}
                 </li>
               </ng-container>
@@ -21,6 +21,13 @@
                 <li nz-submenu nzTitle="Margele">
                   <ul>
                     <li nz-menu-item *ngFor="let cat of categoryList['Margele']" (click)="selectCategory(cat.categoryName)">
+                      {{cat.categoryName}}
+                    </li>
+                  </ul>
+                </li>
+                <li nz-submenu nzTitle="Accesorii">
+                  <ul>
+                    <li nz-menu-item *ngFor="let cat of categoryList['Accesorii']" (click)="selectCategory(cat.categoryName)">
                       {{cat.categoryName}}
                     </li>
                   </ul>

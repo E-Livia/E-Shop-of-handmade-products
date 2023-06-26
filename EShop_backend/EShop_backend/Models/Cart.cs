@@ -16,7 +16,7 @@ namespace EShop_backend.Models
 
         public int CartId { get; set; }
         public int ClientId { get; set; }
-        public double TotalPrice { get; set; }
+        public double? TotalPrice { get; set; }
 
         public virtual Client Client { get; set; }
         public virtual ICollection<CartProduct> CartProduct { get; set; }

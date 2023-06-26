@@ -1,26 +1,39 @@
 <ng-container *ngIf="ProductList.length === 0; else dataTemplate">
-   <ng-template #noDataMessage>
-     <p>Nu există produse adaugate in cos.</p>
-   </ng-template>
-   <ng-container *ngTemplateOutlet="noDataMessage"></ng-container>
- </ng-container>
- <ng-template #dataTemplate>
-<div class="card" *ngFor="let item of ProductList">
- <div class="img">
-    <img
-    (click)="selectProduct(item.productId)" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
- </div>
- <div class="details">
-    <div class="product-name" (click)="selectProduct(item.productId)">{{item.name}}</div>
-    <div class="product-desc" (click)="selectProduct(item.productId)">{{item.description}}</div>
-    <!-- <div class="product-materials">{{item.mat}}</div> -->
- </div>
- <div class="price">
-    {{item.price}} lei
- </div>
- <div class="delete">
-    <button (click)="removeFromCart(item.productId)"><mat-icon>delete</mat-icon></button>
- </div>
-</div>
+  <ng-template #noDataMessage>
+    <p>Nu există produse adaugate in cos.</p>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="noDataMessage"></ng-container>
+</ng-container>
+<ng-template #dataTemplate>
+  <div class="card" *ngFor="let item of ProductList">
+    <div class="img">
+      <img (click)="selectProduct(item.productId)" [src]="item.imagePath" />
+    </div>
+    <div class="details">
+      <div class="product-name" (click)="selectProduct(item.productId)">
+        {{ item.name }}
+      </div>
+      <div class="product-desc" (click)="selectProduct(item.productId)">
+        {{ item.description }}
+      </div>
+    </div>
+    <div class="price-and-quantity">
+      <div class="price">{{ item.price }} lei</div>
+      <div class="quantity">
+       <div class="quan">
+         <input nz-input placeholder="small size" nzSize="default" style="width: 55px; height:50px; font-size: 20px;" [(ngModel)]="item.productQuantity"/>
+      </div>
+       <div class="little-btns">
+         <div class="btn1"><button style="height: 25px;" (click)="increaseQuantity(item.productId)"><mat-icon>keyboard_arrow_up</mat-icon></button></div>
+         <div class="btn2"><button style="height: 25px;" (click)="decreaseQuantity(item.productId)"><mat-icon>keyboard_arrow_down</mat-icon></button></div>
+       </div>
+       
+      </div>
+    </div>
+    <div class="delete">
+      <button (click)="removeFromCart(item.productId)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
 </ng-template>
- 

@@ -10,7 +10,7 @@
     <div class="product-card">
       <div class="prod-img">
         <img (click)="selectProduct(item.productId)"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+        [src]="item.imagePath"
         />
       </div>
       <div class="prod-name" (click)="selectProduct(item.productId)">
