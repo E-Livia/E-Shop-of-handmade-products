@@ -9,11 +9,11 @@
         <ul nz-menu nzMode="inline">
           <li nz-menu-item (click)="allProducts()">Toate produsele</li>
           <ng-container *ngFor="let item of parentList">
-            <li nz-submenu *ngIf="item.categoryParent!=='Margele' && item.categoryParent!=='Accesorii'" nzTitle={{item.categoryParent}}>
+            <li nz-submenu *ngIf="item.categoryParent!=='Margele'  && item.categoryParent !== 'Accesorii'" nzTitle={{item.categoryParent}}>
               <ul>
-                <ng-container *ngIf="item.categoryParent !== 'Margele' && item.categoryParent!=='Accesorii'">
+                <ng-container *ngIf="item.categoryParent !== 'Margele' && item.categoryParent !== 'Accesorii'">
                   <li nz-menu-item *ngFor="let cat of categoryList[item.categoryParent]" (click)="selectCategory(cat.categoryName)"
-                  [style.display]="cat.categoryName !== 'Margele' ? 'list-item' : 'none' && cat.categoryName !== 'Accesorii' ? 'list-item' : 'none'">
+                  [style.display]="cat.categoryName !== 'Margele'  && cat.categoryName !== 'Accesorii' ? 'list-item' : 'none'">
                     {{cat.categoryName}}
                   </li>
                 </ng-container>
@@ -35,6 +35,7 @@
                 </ng-container>
               </ul>
             </li>
+  
           </ng-container>
           
           <li nz-menu-item (click)="goToTutorials()">Tutoriale</li>
@@ -71,18 +72,7 @@
             </ul>
           </nz-dropdown-menu>
   
-          <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuMaterial">
-            Material
-            <span class="material-icons">arrow_drop_down</span>
-          </a>
-          <nz-dropdown-menu #menuMaterial="nzDropdownMenu">
-            <ul nz-menu>
-              <li nz-menu-item>0-20 lei</li>
-              <li nz-menu-item>20-50 lei</li>
-              <li nz-menu-item>50-100 lei</li>
-              <li nz-menu-item>100+ lei</li>
-            </ul>
-          </nz-dropdown-menu>
+          
         </div>
   
         <div id="content-table">

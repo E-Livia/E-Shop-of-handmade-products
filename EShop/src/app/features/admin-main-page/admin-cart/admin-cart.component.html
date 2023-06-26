@@ -19,15 +19,18 @@
           <table>
             <tr>
               <td>Valoarea produselor</td>
-              <td>200 lei</td>
+              <td>{{totalPrice}} lei</td>
             </tr>
             <tr>
-              <td><button mat-icon-button><mat-icon>info</mat-icon></button>Costuri transport</td>
-              <td>15 lei</td>
+              <td><button mat-icon-button nz-popover
+                nzPopoverContent="Pentru comenzi mai mari de 200 lei, transport gratuit"><mat-icon>info</mat-icon></button>
+                Costuri transport
+              </td>
+              <td>{{transportPrice}} lei</td>
             </tr>
             <tr>
               <td>Total de plata</td>
-              <td>215 lei</td>
+              <td>{{cartPrice}} lei</td>
             </tr>
           </table>
         </div>

@@ -1,18 +1,14 @@
 <div class="entire-page">
-    <div class="header">
-      <app-admin-header></app-admin-header>
-    </div>
-  
-    <div>
-      <p id="fav">Preferate</p>
-    </div>
-  
-    <div id="content-table">
-      <app-product class="product-item"></app-product>
-    </div>
-  
-    <!-- <div class="footer">
-      <p>Aplicatie realizata de Livia Popa</p>
-    </div> -->
+  <div class="header">
+    <app-admin-header></app-admin-header>
   </div>
-  
+
+  <div>
+    <p id="fav">Preferate</p>
+    <button mat-flat-button id="back-to-main-page" (click)="goToMainPage()">Inapoi la pagina principala</button>
+  </div>
+
+  <div id="content-table">
+    <app-wishlist-product class="product-item"></app-wishlist-product>
+  </div>
+</div>
