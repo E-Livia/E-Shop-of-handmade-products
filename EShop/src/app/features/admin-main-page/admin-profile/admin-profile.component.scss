@@ -1,0 +1,161 @@
+.profile {
+    background-color: rgb(204, 247, 226);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 7% 10% 83%;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 60% 30%;
+    align-items: center;
+}
+
+.logo {
+    background-color: rgb(207, 160, 207);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#logo-img {
+    width: 100%;
+    height: 100%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    padding-left: 4rem;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(33, 37, 238);
+}
+
+.search-bar {
+    width: 20vw;
+}
+
+#welcome-message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 40px;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+.btn-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button {
+    background-color: rgb(60, 196, 150);
+}
+
+.btn-icon {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 15% 25% 60%;
+    overflow-y: auto;
+}
+
+.account {
+    background-color: white;
+    margin: 0px 20px 20px 20px;
+    border: 1px solid rgb(192, 192, 192);
+}
+
+ul {
+    list-style-type: none;
+    /* Elimină stilul implicit al listei */
+}
+
+li {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 17px;
+    font-style: bold;
+    margin-top: 20px;
+}
+
+a {
+    color: rgba(0,0,0,.85);
+}
+
+#personal-info {
+    margin: 0px 20px 20px 0px;
+    overflow-y: auto;
+}
+
+#history {
+    margin: 0px 20px 20px 0px;
+    padding: 0px 20px 15px 20px;
+}
+
+.order-history{
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(192, 192, 192);
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+span {
+    padding-left: 20px;
+    font-size: 17px;
+}
+
+table {
+    background-color: white;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th {
+    border: 1px dotted rgb(136, 134, 134);
+    padding: 8px;
+    text-align: left;
+}
+
+table .td {
+    border: 1px dotted rgb(136, 134, 134);
+    padding: 8px;
+    text-align: center;
+}
+table .table-btn{
+    background-color: rgb(204, 247, 226);
+    border:0px;
+    padding-left: 25px;
+}
+
+.static-text{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.dynamic-text{
+    font-size: 15px;
+}

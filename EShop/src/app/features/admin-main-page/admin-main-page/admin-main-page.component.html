@@ -11,63 +11,41 @@
         <button>Actualizeaza categorie</button>
         <button>Dezactiveaza categorie</button>
       </div>
+
       <ul nz-menu nzMode="inline">
-        <li nz-submenu nzTitle="Articole pentru evenimente">
-          <ul>
-            <li nz-menu-item>Valentine's day si Dragobete</li>
-            <li nz-menu-item>Martisor</li>
-            <li nz-menu-item>Paste</li>
-            <li nz-menu-item>Craciun</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Materiale">
-          <ul>
-            <li nz-menu-item>Argila polimerica</li>
-            <li nz-menu-item>Ambalaje</li>
-            <li nz-menu-item>Paiete</li>
-            <li nz-submenu nzTitle="Margele">
-              <ul>
-                <li nz-menu-item>Margele din lemn</li>
-                <li nz-menu-item>Margele FIMO</li>
-                <li nz-menu-item>Margele din plastic</li>
-                <li nz-menu-item>Margele metalice</li>
-              </ul>
-            </li>
-            <li nz-menu-item>Pietre semipretioase</li>
-            <li nz-submenu nzTitle="Accesorii">
-              <ul>
-                <li nz-menu-item>Ace de insirat margele</li>
-                <li nz-menu-item>Agrafe, baze pentru brose</li>
-                <li nz-menu-item>Baze pentru brelocuri</li>
-                <li nz-menu-item>Cadru inele</li>
-                <li nz-menu-item>Clipsuri, catarame</li>
-                <li nz-menu-item>Lanturi, pandantive, baze coliere</li>
-                <li nz-menu-item>Suporti, tortite cercei</li>
-                <li nz-menu-item>Zale</li>
-                <li nz-menu-item>Incuietori</li>
-                <li nz-menu-item>
-                  Ate, fire, snururi, piele, panglici, elastice
+        <li nz-menu-item (click)="allProducts()">Toate produsele</li>
+        <ng-container *ngFor="let item of parentList">
+          <li nz-submenu *ngIf="item.categoryParent!=='Margele'  && item.categoryParent !== 'Accesorii'" nzTitle={{item.categoryParent}}>
+            <ul>
+              <ng-container *ngIf="item.categoryParent !== 'Margele' && item.categoryParent !== 'Accesorii'">
+                <li nz-menu-item *ngFor="let cat of categoryList[item.categoryParent]" (click)="selectCategory(cat.categoryName)"
+                [style.display]="cat.categoryName !== 'Margele'  && cat.categoryName !== 'Accesorii' ? 'list-item' : 'none'">
+                  {{cat.categoryName}}
                 </li>
-                <li nz-menu-item>Sarma modelaj, fir otel, sarma cu memorie</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Bijuterii">
-          <ul>
-            <li nz-menu-item>Cercei</li>
-            <li nz-menu-item>Inele</li>
-            <li nz-menu-item>Brose</li>
-            <li nz-menu-item>Lantisoare</li>
-            <li nz-menu-item>Bratari</li>
-            <li nz-menu-item>Pandantive</li>
-            <li nz-menu-item>Piercinguri</li>
-            <li nz-menu-item>Accesorii de par</li>
-            <li nz-menu-item>Brelocuri</li>
-          </ul>
-        </li>
-        <li nz-menu-item>Tutoriale</li>
+              </ng-container>
+              <ng-container *ngIf="item.categoryParent === 'Materiale'">
+                <li nz-submenu nzTitle="Margele">
+                  <ul>
+                    <li nz-menu-item *ngFor="let cat of categoryList['Margele']" (click)="selectCategory(cat.categoryName)">
+                      {{cat.categoryName}}
+                    </li>
+                  </ul>
+                </li>
+                <li nz-submenu nzTitle="Accesorii">
+                  <ul>
+                    <li nz-menu-item *ngFor="let cat of categoryList['Accesorii']" (click)="selectCategory(cat.categoryName)">
+                      {{cat.categoryName}}
+                    </li>
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+
+        </ng-container>
+        <li nz-menu-item (click)="goToTutorials()">Tutoriale</li>
       </ul>
+
     </div>
 
     <div class="main-content">
@@ -98,19 +76,6 @@
           <span class="material-icons">arrow_drop_down</span>
         </a>
         <nz-dropdown-menu #menuPret="nzDropdownMenu">
-          <ul nz-menu>
-            <li nz-menu-item>0-20 lei</li>
-            <li nz-menu-item>20-50 lei</li>
-            <li nz-menu-item>50-100 lei</li>
-            <li nz-menu-item>100+ lei</li>
-          </ul>
-        </nz-dropdown-menu>
-
-        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menuMaterial">
-          Material
-          <span class="material-icons">arrow_drop_down</span>
-        </a>
-        <nz-dropdown-menu #menuMaterial="nzDropdownMenu">
           <ul nz-menu>
             <li nz-menu-item>0-20 lei</li>
             <li nz-menu-item>20-50 lei</li>

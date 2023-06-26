@@ -6,6 +6,8 @@ import { AdminCartComponent } from './admin-cart/admin-cart.component';
 import { AdminWishlistComponent } from './admin-wishlist/admin-wishlist.component';
 import { AdminAboutComponent } from './admin-about/admin-about.component';
 import { OrderDetailsComponent } from 'src/app/shared/components/order-details/order-details.component';
+import { AdminTutorialsComponent } from './admin-tutorials/admin-tutorials.component';
+import { AdminCategoryMainPageComponent } from './admin-category-main-page/admin-category-main-page.component';
 
 const routes: Routes = [
   {
@@ -35,6 +37,14 @@ const routes: Routes = [
   {
     path:'admin-cart/order-details',
     component:OrderDetailsComponent
+  },
+  {
+    path:'admin-tutorials',
+    component:AdminTutorialsComponent
+  },
+  {
+    path:'admin-main-page/category/:categoryName',
+    component:AdminCategoryMainPageComponent
   }
 ];
 

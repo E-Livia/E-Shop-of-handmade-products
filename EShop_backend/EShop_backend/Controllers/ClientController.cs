@@ -33,7 +33,6 @@ namespace EShop_backend.Controllers
             return context.Client.ToList();
         }
 
-        // GET api/<ClientController>/{username}
         //get client info
         [HttpGet("{username}")]
         public JsonResult GetClientInfo(string username)

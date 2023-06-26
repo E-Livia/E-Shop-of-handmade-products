@@ -9,6 +9,8 @@ import { AdminWishlistComponent } from './admin-wishlist/admin-wishlist.componen
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminAboutComponent } from './admin-about/admin-about.component';
+import { AdminTutorialsComponent } from './admin-tutorials/admin-tutorials.component';
+import { AdminCategoryMainPageComponent } from './admin-category-main-page/admin-category-main-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AdminAboutComponent } from './admin-about/admin-about.component';
     AdminCartComponent,
     AdminProfileComponent,
     AdminWishlistComponent,
-    AdminAboutComponent
+    AdminAboutComponent,
+    AdminTutorialsComponent,
+    AdminCategoryMainPageComponent
   ],
   imports: [
     CommonModule,
