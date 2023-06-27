@@ -10,6 +10,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { OrderDetailsComponent } from 'src/app/shared/components/order-details/order-details.component';
 import { TutorialsComponent } from './tutorials/tutorials.component';
 import { CategoryMainPageComponent } from './category-main-page/category-main-page.component';
+import { UpdateClientInfoComponent } from './update-client-info/update-client-info.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path:'main-page/category/:categoryName',
     component:CategoryMainPageComponent
+  },
+  {
+    path:'profile/updateInfo',
+    component:UpdateClientInfoComponent
   }
 ];
 

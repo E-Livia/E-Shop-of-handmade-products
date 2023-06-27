@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   loggedInRole:string;
   User:any=[];
   UserAddress:any=[];
+  UserBillingAddress:any=[];
   OrderHistory:any=[];
 
   goToAboutPage(){
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserInfo();
     this.getProfileUserAddress();
+    this.getClientBillingAddress();
     this.getClientOrderHistory();
   }
 
@@ -48,10 +50,22 @@ export class ProfileComponent implements OnInit {
     
   }
 
+  updateInfo(){
+    this.router.navigate(['profile/updateInfo']);
+  }
+
   getProfileUserAddress() {
     this.clientService.getProfileClientAddress(this.loggedInUsername).subscribe(data => {
       this.UserAddress = data;
       console.log(this.UserAddress);
+    });
+    
+  }
+
+  getClientBillingAddress() {
+    this.clientService.getClientBillingAddress(this.loggedInUsername).subscribe(data => {
+      this.UserBillingAddress = data;
+      console.log(this.UserBillingAddress);
     });
     
   }
@@ -64,6 +78,9 @@ export class ProfileComponent implements OnInit {
     
   }
 
-
+  useSameAddress(){
+    this.UserBillingAddress=this.UserAddress;
+    //to do, functie de update billing address sau de add cu drop inainte, ceea ce e de preferat
+  }
 
 }

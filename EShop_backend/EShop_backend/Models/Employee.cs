@@ -12,7 +12,10 @@ namespace EShop_backend.Models
         public Employee()
         {
             EmployeeAddress = new HashSet<EmployeeAddress>();
+            EmployeeBillingAddress = new HashSet<EmployeeBillingAddress>();
+            EmployeeCart = new HashSet<EmployeeCart>();
             EmployeeOrder = new HashSet<EmployeeOrder>();
+            EmployeeWishlist = new HashSet<EmployeeWishlist>();
         }
 
         public int EmployeeId { get; set; }
@@ -29,6 +32,9 @@ namespace EShop_backend.Models
 
         public virtual User UsernameNavigation { get; set; }
         public virtual ICollection<EmployeeAddress> EmployeeAddress { get; set; }
+        public virtual ICollection<EmployeeBillingAddress> EmployeeBillingAddress { get; set; }
+        public virtual ICollection<EmployeeCart> EmployeeCart { get; set; }
         public virtual ICollection<EmployeeOrder> EmployeeOrder { get; set; }
+        public virtual ICollection<EmployeeWishlist> EmployeeWishlist { get; set; }
     }
 }

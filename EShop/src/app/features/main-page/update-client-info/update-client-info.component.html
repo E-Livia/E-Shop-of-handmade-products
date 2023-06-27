@@ -1,0 +1,69 @@
+<div class="entire-page">
+  <form
+    class="form"
+    nz-form
+    [nzAutoTips]="autoTips"
+    [formGroup]="form"
+    (ngSubmit)="submitForm()"
+  >
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName"
+        >Prenume</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Introduceti prenumele!"
+      >
+        <input nz-input formControlName="firstName" id="firstName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName"
+        >Nume</nz-form-label
+      >
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Introduceti numele!">
+        <input nz-input formControlName="lastName" id="lastName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="emailAddress"
+        >E-mail</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Adresa de e-mail nu este valida!"
+      >
+        <input nz-input formControlName="emailAddress" id="emailAddress" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNo" nzRequired
+        >Numar de telefon</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        [nzValidateStatus]="form.controls['phoneNo']"
+        nzErrorTip="Introduceti numarul de telefon!"
+      >
+        <nz-input-group>
+          <input formControlName="phoneNo" id="'phoneNo'" nz-input />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item style="margin-top: 60px;">
+      <nz-form-control [nzOffset]="5" [nzSpan]="3">
+        <button nz-button nzType="primary">Salveaza</button>
+      </nz-form-control>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" (click)="goBack()">Renunta</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

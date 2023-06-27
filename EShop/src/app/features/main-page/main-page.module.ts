@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { AboutComponent } from './about/about.component';
 import { TutorialsComponent } from './tutorials/tutorials.component';
 import { CategoryMainPageComponent } from './category-main-page/category-main-page.component';
+import { UpdateClientInfoComponent } from './update-client-info/update-client-info.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CategoryMainPageComponent } from './category-main-page/category-main-pa
     CartComponent,
     AboutComponent,
     TutorialsComponent,
-    CategoryMainPageComponent
+    CategoryMainPageComponent,
+    UpdateClientInfoComponent
   ],
   imports: [
     CommonModule,

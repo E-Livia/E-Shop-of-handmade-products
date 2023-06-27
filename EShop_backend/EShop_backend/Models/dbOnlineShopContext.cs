@@ -24,10 +24,16 @@ namespace EShop_backend.Models
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientAddress> ClientAddress { get; set; }
+        public virtual DbSet<ClientBillingAddress> ClientBillingAddress { get; set; }
         public virtual DbSet<ClientOrder> ClientOrder { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeAddress> EmployeeAddress { get; set; }
+        public virtual DbSet<EmployeeBillingAddress> EmployeeBillingAddress { get; set; }
+        public virtual DbSet<EmployeeCart> EmployeeCart { get; set; }
+        public virtual DbSet<EmployeeCartProduct> EmployeeCartProduct { get; set; }
         public virtual DbSet<EmployeeOrder> EmployeeOrder { get; set; }
+        public virtual DbSet<EmployeeWishlist> EmployeeWishlist { get; set; }
+        public virtual DbSet<EmployeeWishlistProduct> EmployeeWishlistProduct { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Order> Order { get; set; }
@@ -76,6 +82,10 @@ namespace EShop_backend.Models
                 entity.Property(e => e.CartId).HasColumnName("cartId");
 
                 entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.Property(e => e.ProductQuantity)
+                    .HasColumnName("productQuantity")
+                    .HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.Cart)
                     .WithMany(p => p.CartProduct)
@@ -193,6 +203,41 @@ namespace EShop_backend.Models
                     .HasConstraintName("FK_ClientAddress_Client");
             });
 
+            modelBuilder.Entity<ClientBillingAddress>(entity =>
+            {
+                entity.Property(e => e.ClientBillingAddressId).HasColumnName("clientBillingAddressId");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasColumnName("active")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.AddressLine)
+                    .IsRequired()
+                    .HasColumnName("addressLine")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasColumnName("city")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ClientId).HasColumnName("clientId");
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasColumnName("country")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.PostalCode).HasColumnName("postalCode");
+
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.ClientBillingAddress)
+                    .HasForeignKey(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ClientBillingAddress_Client");
+            });
+
             modelBuilder.Entity<ClientOrder>(entity =>
             {
                 entity.Property(e => e.ClientOrderId).HasColumnName("clientOrderId");
@@ -277,9 +322,7 @@ namespace EShop_backend.Models
 
             modelBuilder.Entity<EmployeeAddress>(entity =>
             {
-                entity.Property(e => e.EmployeeAddressId)
-                    .HasColumnName("employeeAddressId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.EmployeeAddressId).HasColumnName("employeeAddressId");
 
                 entity.Property(e => e.Active)
                     .IsRequired()
@@ -312,6 +355,81 @@ namespace EShop_backend.Models
                     .HasConstraintName("FK_EmployeeAddress_Employee");
             });
 
+            modelBuilder.Entity<EmployeeBillingAddress>(entity =>
+            {
+                entity.Property(e => e.EmployeeBillingAddressId).HasColumnName("employeeBillingAddressId");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasColumnName("active")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.AddressLine)
+                    .IsRequired()
+                    .HasColumnName("addressLine")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasColumnName("city")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasColumnName("country")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.EmployeeId).HasColumnName("employeeId");
+
+                entity.Property(e => e.PostalCode).HasColumnName("postalCode");
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.EmployeeBillingAddress)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeBillingAddress_Employee");
+            });
+
+            modelBuilder.Entity<EmployeeCart>(entity =>
+            {
+                entity.Property(e => e.EmployeeCartId).HasColumnName("employeeCartId");
+
+                entity.Property(e => e.EmployeeId).HasColumnName("employeeId");
+
+                entity.Property(e => e.TotalPrice).HasColumnName("totalPrice");
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.EmployeeCart)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeCart_Employee");
+            });
+
+            modelBuilder.Entity<EmployeeCartProduct>(entity =>
+            {
+                entity.HasKey(e => e.EmplCpid);
+
+                entity.Property(e => e.EmplCpid).HasColumnName("emplCPId");
+
+                entity.Property(e => e.EmployeeCartId).HasColumnName("employeeCartId");
+
+                entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.Property(e => e.ProductQuantity).HasColumnName("productQuantity");
+
+                entity.HasOne(d => d.EmployeeCart)
+                    .WithMany(p => p.EmployeeCartProduct)
+                    .HasForeignKey(d => d.EmployeeCartId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeCartProduct_EmployeeCart");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.EmployeeCartProduct)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeCartProduct_Product");
+            });
+
             modelBuilder.Entity<EmployeeOrder>(entity =>
             {
                 entity.Property(e => e.EmployeeOrderId).HasColumnName("employeeOrderId");
@@ -336,6 +454,47 @@ namespace EShop_backend.Models
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EmployeeOrder_Order");
+            });
+
+            modelBuilder.Entity<EmployeeWishlist>(entity =>
+            {
+                entity.Property(e => e.EmployeeWishlistId).HasColumnName("employeeWishlistId");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasColumnName("active")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.EmployeeId).HasColumnName("employeeId");
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.EmployeeWishlist)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeWishlist_Employee");
+            });
+
+            modelBuilder.Entity<EmployeeWishlistProduct>(entity =>
+            {
+                entity.HasKey(e => e.EmpWpid);
+
+                entity.Property(e => e.EmpWpid).HasColumnName("empWPId");
+
+                entity.Property(e => e.EmployeeWishlistId).HasColumnName("employeeWishlistId");
+
+                entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.HasOne(d => d.EmployeeWishlist)
+                    .WithMany(p => p.EmployeeWishlistProduct)
+                    .HasForeignKey(d => d.EmployeeWishlistId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeWishlistProduct_EmployeeWishlist");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.EmployeeWishlistProduct)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EmployeeWishlistProduct_Product");
             });
 
             modelBuilder.Entity<Inventory>(entity =>
@@ -430,7 +589,6 @@ namespace EShop_backend.Models
 
                 entity.Property(e => e.ImagePath)
                     .HasColumnName("imagePath")
-                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)

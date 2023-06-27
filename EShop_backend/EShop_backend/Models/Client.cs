@@ -13,6 +13,7 @@ namespace EShop_backend.Models
         {
             Cart = new HashSet<Cart>();
             ClientAddress = new HashSet<ClientAddress>();
+            ClientBillingAddress = new HashSet<ClientBillingAddress>();
             ClientOrder = new HashSet<ClientOrder>();
             Wishlist = new HashSet<Wishlist>();
         }
@@ -29,6 +30,7 @@ namespace EShop_backend.Models
         public virtual User UsernameNavigation { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<ClientAddress> ClientAddress { get; set; }
+        public virtual ICollection<ClientBillingAddress> ClientBillingAddress { get; set; }
         public virtual ICollection<ClientOrder> ClientOrder { get; set; }
         public virtual ICollection<Wishlist> Wishlist { get; set; }
     }

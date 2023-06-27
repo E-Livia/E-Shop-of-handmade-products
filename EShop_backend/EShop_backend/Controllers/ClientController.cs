@@ -26,13 +26,6 @@ namespace EShop_backend.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/<ClientController>
-        [HttpGet]
-        public IEnumerable<Client> Get()
-        {
-            return context.Client.ToList();
-        }
-
         //get client info
         [HttpGet("{username}")]
         public JsonResult GetClientInfo(string username)
@@ -60,11 +53,70 @@ namespace EShop_backend.Controllers
             return new JsonResult(table);
         }
 
+        //update client info
+        [HttpPut("{username}/{firstName}/{lastName}/{emailAddress}/{phoneNo}")]
+        public JsonResult UpdateClientInfo(string username, string firstName, string lastName, string emailAddress, int phoneNo)
+        {
+            var query = "EXEC UpdateClientInfo @username, @firstName, @lastName, @emailAddress, @phoneNo";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@firstName", firstName);
+                    myCommand.Parameters.AddWithValue("@lastName", lastName);
+                    myCommand.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    myCommand.Parameters.AddWithValue("@phoneNo", phoneNo);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
         [Route("clientAddress/{username}")]
         [HttpGet]
         public JsonResult GetClientAddress(string username)
         {
             var query = "EXEC GetProfileClientAddress @username";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+
+        [Route("clientBillingAddress/{username}")]
+        [HttpGet]
+        public JsonResult GetClientBillingAddress(string username)
+        {
+            var query = "EXEC GetClientBillingAddress @username";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
@@ -112,24 +164,6 @@ namespace EShop_backend.Controllers
             }
 
             return new JsonResult(table);
-        }
-
-        // POST api/<ClientController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ClientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ClientController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

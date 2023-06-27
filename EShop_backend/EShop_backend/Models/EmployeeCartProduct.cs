@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace EShop_backend.Models
 {
-    public partial class CartProduct
+    public partial class EmployeeCartProduct
     {
-        public int CartProductId { get; set; }
-        public int CartId { get; set; }
+        public int EmplCpid { get; set; }
+        public int EmployeeCartId { get; set; }
         public int ProductId { get; set; }
-        public int? ProductQuantity { get; set; }
+        public int ProductQuantity { get; set; }
 
-        public virtual Cart Cart { get; set; }
+        public virtual EmployeeCart EmployeeCart { get; set; }
         public virtual Product Product { get; set; }
     }
 }

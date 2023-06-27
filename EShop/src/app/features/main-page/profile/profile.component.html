@@ -47,7 +47,7 @@
           <a href="../profile"> Contul meu </a>
         </li>
         <li>
-          <a href="../wishlist/"> Lista de dorinte </a>
+          <a href="../wishlist"> Lista de dorinte </a>
         </li>
         <li>
           <a href="../cart"> Cos de cumparaturi </a>
@@ -63,84 +63,172 @@
         <nz-collapse-panel [nzHeader]="date" [nzActive]="true" *ngFor="let item of User">
           <table>
             <tr>
-              <td>Nume</td>
+              <td class="static-text">Nume</td>
             </tr>
             <tr>
-              <td>{{ item.lastName }}</td>
+              <td class="dynamic-text">{{ item.lastName }}</td>
             </tr>
             <tr>
-              <td>Prenume</td>
+              <td class="static-text">Prenume</td>
             </tr>
             <tr>
-              <td>{{ item.firstName }}</td>
+              <td class="dynamic-text">{{ item.firstName }}</td>
             </tr>
             <tr>
-              <td>Adresa e-mail</td>
+              <td class="static-text">Adresa e-mail</td>
             </tr>
             <tr>
-              <td>{{ item.emailAddress }}</td>
+              <td class="dynamic-text">{{ item.emailAddress }}</td>
             </tr>
             <tr>
-              <td>Telefon</td>
+              <td class="static-text">Telefon</td>
             </tr>
             <tr>
-              <td>{{ item.phoneNo }}</td>
+              <td class="dynamic-text">{{ item.phoneNo }}</td>
             </tr>
           </table>
-          <button class="modify-btn">Modifica datele</button>
+          <button mat-stroked-button color="primary" class="modify-btn" (click)="updateInfo()">Modifica datele</button>
         </nz-collapse-panel>
+
         <nz-collapse-panel [nzHeader]="date1" [nzActive]="false" >
           <ng-container *ngIf="UserAddress.length === 0; else userAddressContent">
             <p>Nu există adrese disponibile.</p>
+            <button mat-stroked-button color="primary">Adauga adresa</button>
           </ng-container>
           <ng-template #userAddressContent>
           <table *ngFor="let item1 of UserAddress">
               <tr>
-                <td>Nume prenume</td>
+                <td class="static-text">Nume</td>
               </tr>
               <tr>
-                <td>{{ item1.name }}</td>
+                <td class="dynamic-text">{{ item1.lastName }}</td>
               </tr>
 
               <tr>
-                <td>Telefon</td>
+                <td class="static-text">Prenume</td>
               </tr>
               <tr>
-                <td>{{ item1.phoneNo }}</td>
+                <td class="dynamic-text">{{ item1.firstName }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Telefon</td>
               </tr>
               <tr>
-                <td>Adresa</td>
+                <td class="dynamic-text">{{ item1.phoneNo }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Adresa de e-mail</td>
               </tr>
               <tr>
-                <td>{{ item1.addressLine }}</td>
+                <td class="dynamic-text">{{ item1.emailAddress }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Tara</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item1.country }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Oras</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item1.city }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Cod postal</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item1.postalCode }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Adresa</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item1.addressLine }}</td>
+              </tr>
+            </table>
+            <button class="modify-btn" mat-stroked-button color="primary">Modifica datele</button>
+          </ng-template>
+        </nz-collapse-panel>
+        <nz-collapse-panel [nzHeader]="date2" [nzActive]="false">
+          
+          <ng-container
+            *ngIf="
+              UserBillingAddress.length === 0;
+              else userBillingAddressContent
+            "
+          >
+            <p>Nu există adrese disponibile.</p>
+            <button (click)="useSameAddress()" mat-stroked-button color="primary">Utilizeaza adresa ta</button>
+            <button mat-stroked-button color="primary">Adauga adresa</button>
+          </ng-container>
+          <ng-template #userBillingAddressContent>
+            <button (click)="useSameAddress()" mat-stroked-button color="primary">Utilizeaza adresa ta</button>
+            <table *ngFor="let item2 of UserBillingAddress">
+              <tr>
+                <td class="static-text">Nume</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.lastName }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Prenume</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.firstName }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Telefon</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.phoneNo }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Adresa de e-mail</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.emailAddress }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Tara</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.country }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Oras</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.city }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Cod postal</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.postalCode }}</td>
+              </tr>
+
+              <tr>
+                <td class="static-text">Adresa</td>
+              </tr>
+              <tr>
+                <td class="dynamic-text">{{ item2.addressLine }}</td>
               </tr>
             </table>
             <button class="modify-btn">Modifica datele</button>
           </ng-template>
-        </nz-collapse-panel>
-        <nz-collapse-panel [nzHeader]="date2" [nzActive]="false">
-          <button>Utilizeaza adresa ta</button>
-          <table>
-            <tr>
-              <td>Nume, prenume</td>
-            </tr>
-            <tr>
-              <td>Popa Elena-Livia</td>
-            </tr>
-            <tr>
-              <td>Telefon</td>
-            </tr>
-            <tr>
-              <td>0730282401</td>
-            </tr>
-            <tr>
-              <td>Adresa</td>
-            </tr>
-            <tr>
-              <td>sat Plavia, com. Iordaceanu, jud. PH, nr 122, bl. 122</td>
-            </tr>
-          </table>
-          <button class="modify-btn">Modifica datele</button>
         </nz-collapse-panel>
       </nz-collapse>
     </div>

@@ -12,6 +12,8 @@ namespace EShop_backend.Models
         public Product()
         {
             CartProduct = new HashSet<CartProduct>();
+            EmployeeCartProduct = new HashSet<EmployeeCartProduct>();
+            EmployeeWishlistProduct = new HashSet<EmployeeWishlistProduct>();
             Inventory = new HashSet<Inventory>();
             ProductCategory = new HashSet<ProductCategory>();
             ProductImage = new HashSet<ProductImage>();
@@ -29,6 +31,8 @@ namespace EShop_backend.Models
         public string ImagePath { get; set; }
 
         public virtual ICollection<CartProduct> CartProduct { get; set; }
+        public virtual ICollection<EmployeeCartProduct> EmployeeCartProduct { get; set; }
+        public virtual ICollection<EmployeeWishlistProduct> EmployeeWishlistProduct { get; set; }
         public virtual ICollection<Inventory> Inventory { get; set; }
         public virtual ICollection<ProductCategory> ProductCategory { get; set; }
         public virtual ICollection<ProductImage> ProductImage { get; set; }
