@@ -11,10 +11,12 @@
           type="text"
           nz-input
           placeholder="search item"
+          [(ngModel)]="searchText"
+          (keyup.enter)="setTextForSearch()"
         />
       </nz-input-group>
       <ng-template #suffixIconButton>
-        <button nz-button nzType="primary" nzSearch class="search-btn">
+        <button nz-button nzType="primary" nzSearch class="search-btn" (click)="setTextForSearch()">
           <mat-icon>search</mat-icon>
         </button>
       </ng-template>
@@ -253,7 +255,7 @@
             <td class="td">{{ item.date }}</td>
             <td class="td">{{ item.totalPrice }}</td>
             <td class="td">{{ item.status }}</td>
-            <td class="table-btn"><button>Detalii</button></td>
+            <!-- <td class="table-btn" ><button>Detalii</button></td> -->
           </tr>
         </tbody>
       </table>

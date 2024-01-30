@@ -16,7 +16,6 @@ namespace EShop_backend.Models
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public string Description { get; set; }
         public string CategoryParent { get; set; }
         public bool? Active { get; set; }
 

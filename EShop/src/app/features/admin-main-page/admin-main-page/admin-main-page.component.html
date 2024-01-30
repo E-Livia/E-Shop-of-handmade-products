@@ -7,7 +7,76 @@
     <div id="left-sider">
       <h1 id="sider-title">Catalog</h1>
       <div class="catalog-btn-container">
-        <button>Adauga categorie</button>
+        <button nz-button nzType="primary" (click)="showCatModal()">Adauga categorie</button>
+        <nz-modal
+        [(nzVisible)]="isVisibleCat"
+        [nzTitle]="modalTitleCat"
+        [nzContent]="modalContentCat"
+        [nzFooter]="modalFooterCat"
+        (nzOnCancel)="handleCancelCat()"
+      >
+        <ng-template #modalTitleCat>Adauga o categorie</ng-template>
+
+        <ng-template #modalContentCat>
+          <form
+            class="form"
+            nz-form
+            [formGroup]="product"
+            (ngSubmit)="submitFormCat()"
+          >
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="categoryName"
+                >Categorie</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Introduceti numele categoriei!"
+              >
+                <input nz-input formControlName="categoryName" id="categoryName" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzRequired
+                nzFor="categoryParent"
+                >Categorie parinte</nz-form-label
+              >
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                nzErrorTip="Introduceti numele categoriei parinte!"
+              >
+                <input nz-input formControlName="categoryParent" id="categoryParent" />
+              </nz-form-control>
+            </nz-form-item>
+            
+          </form>
+        </ng-template>
+
+        <ng-template #modalFooterCat>
+          <button nz-button nzType="default" (click)="handleCancelCat()">
+            Renunta
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            (click)="handleOkCat()"
+            [nzLoading]="isConfirmLoading"
+          >
+            Salveaza
+          </button>
+        </ng-template>
+      </nz-modal>
+
+
         <button>Actualizeaza categorie</button>
         <button>Dezactiveaza categorie</button>
       </div>
@@ -15,45 +84,238 @@
       <ul nz-menu nzMode="inline">
         <li nz-menu-item (click)="allProducts()">Toate produsele</li>
         <ng-container *ngFor="let item of parentList">
-          <li nz-submenu *ngIf="item.categoryParent!=='Margele'  && item.categoryParent !== 'Accesorii'" nzTitle={{item.categoryParent}}>
+          <li
+            nz-submenu
+            *ngIf="
+              item.categoryParent !== 'Margele' &&
+              item.categoryParent !== 'Accesorii'
+            "
+            nzTitle="{{ item.categoryParent }}"
+          >
             <ul>
-              <ng-container *ngIf="item.categoryParent !== 'Margele' && item.categoryParent !== 'Accesorii'">
-                <li nz-menu-item *ngFor="let cat of categoryList[item.categoryParent]" (click)="selectCategory(cat.categoryName)"
-                [style.display]="cat.categoryName !== 'Margele'  && cat.categoryName !== 'Accesorii' ? 'list-item' : 'none'">
-                  {{cat.categoryName}}
+              <ng-container
+                *ngIf="
+                  item.categoryParent !== 'Margele' &&
+                  item.categoryParent !== 'Accesorii'
+                "
+              >
+                <li
+                  nz-menu-item
+                  *ngFor="let cat of categoryList[item.categoryParent]"
+                  (click)="selectCategory(cat.categoryName)"
+                  [style.display]="
+                    cat.categoryName !== 'Margele' &&
+                    cat.categoryName !== 'Accesorii'
+                      ? 'list-item'
+                      : 'none'
+                  "
+                >
+                  {{ cat.categoryName }}
                 </li>
               </ng-container>
               <ng-container *ngIf="item.categoryParent === 'Materiale'">
                 <li nz-submenu nzTitle="Margele">
                   <ul>
-                    <li nz-menu-item *ngFor="let cat of categoryList['Margele']" (click)="selectCategory(cat.categoryName)">
-                      {{cat.categoryName}}
+                    <li
+                      nz-menu-item
+                      *ngFor="let cat of categoryList['Margele']"
+                      (click)="selectCategory(cat.categoryName)"
+                    >
+                      {{ cat.categoryName }}
                     </li>
                   </ul>
                 </li>
                 <li nz-submenu nzTitle="Accesorii">
                   <ul>
-                    <li nz-menu-item *ngFor="let cat of categoryList['Accesorii']" (click)="selectCategory(cat.categoryName)">
-                      {{cat.categoryName}}
+                    <li
+                      nz-menu-item
+                      *ngFor="let cat of categoryList['Accesorii']"
+                      (click)="selectCategory(cat.categoryName)"
+                    >
+                      {{ cat.categoryName }}
                     </li>
                   </ul>
                 </li>
               </ng-container>
             </ul>
           </li>
-
         </ng-container>
         <li nz-menu-item (click)="goToTutorials()">Tutoriale</li>
       </ul>
-
     </div>
 
     <div class="main-content">
       <div class="admin-commands">
-        <button>Adauga produs</button>
+        <button nz-button nzType="primary" (click)="showModal()">
+          Adauga produs
+        </button>
+        <nz-modal
+          [(nzVisible)]="isVisible"
+          [nzTitle]="modalTitle"
+          [nzContent]="modalContent"
+          [nzFooter]="modalFooter"
+          (nzOnCancel)="handleCancel()"
+        >
+          <ng-template #modalTitle>Adauga produs</ng-template>
+
+          <ng-template #modalContent>
+            <form
+              class="form"
+              nz-form
+              [formGroup]="product"
+              (ngSubmit)="submitForm()"
+            >
+              <nz-form-item>
+                <nz-form-label
+                  [nzSm]="6"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="name"
+                  >Nume produs</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                  nzErrorTip="Introduceti numele produsului!"
+                >
+                  <input nz-input formControlName="name" id="name" />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label
+                  [nzSm]="6"
+                  [nzXs]="24"
+                  nzFor="description"
+                  >Descriere</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                  
+                >
+                  <input nz-input formControlName="description" id="description" />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label
+                  [nzSm]="6"
+                  [nzXs]="24"
+                  nzRequired
+                  nzFor="price"
+                  >Pret</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                  nzErrorTip="Pretul nu este valida!"
+                >
+                  <input
+                    nz-input
+                    formControlName="price"
+                    id="price"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="credits"
+                  >Credite</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                >
+                  <nz-input-group>
+                    <input formControlName="credits" id="'credits'" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="imagePath"
+                  >Calea imaginii</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                >
+                  <nz-input-group>
+                    <input formControlName="imagePath" id="'imagePath'" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="categoryName" nzRequired
+                  >Categorie</nz-form-label
+                >
+                <nz-form-control
+                  [nzSm]="14"
+                  [nzXs]="24"
+                >
+                  <nz-input-group>
+                    <input formControlName="categoryName" id="'categoryName'" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              
+            </form>
+          </ng-template>
+
+          <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">
+              Renunta
+            </button>
+            <button
+              nz-button
+              nzType="primary"
+              (click)="handleOk()"
+              [nzLoading]="isConfirmLoading"
+            >
+              Salveaza
+            </button>
+          </ng-template>
+        </nz-modal>
+
         <button>Modifica produs</button>
-        <button>Sterge produs</button>
-    </div>
+
+        <button nz-button nzType="primary" (click)="showModalDeleteProduct()">Sterge produs</button>
+        <nz-modal
+          [(nzVisible)]="isVisibleDeleteProduct"
+          [nzTitle]="modalTitleDeleteProduct"
+          [nzContent]="modalContentDeleteProduct"
+          [nzFooter]="modalFooterDeleteProduct"
+          (nzOnCancel)="handleCancelDeleteProduct()"
+        >
+          <ng-template #modalTitleDeleteProduct>Adauga produs</ng-template>
+
+          <ng-template #modalContentDeleteProduct>
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Nume produs</nz-form-label>
+              <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Introduceti numele produsului!">
+                <input nz-input id="name" [(ngModel)]="productName" />
+              </nz-form-control>
+            </nz-form-item>
+          </ng-template>
+
+          <ng-template #modalFooterDeleteProduct>
+            <button nz-button nzType="default" (click)="handleCancelDeleteProduct()">
+              Renunta
+            </button>
+            <button
+              nz-button
+              nzType="primary"
+              (click)="handleOkDeleteProduct()"
+              [nzLoading]="isConfirmLoading"
+            >
+              Salveaza
+            </button>
+          </ng-template>
+        </nz-modal>
+      </div>
+
 
       <div id="filter-bar">
         <label>Sortare</label>

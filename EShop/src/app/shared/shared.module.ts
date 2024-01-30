@@ -29,6 +29,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { WishlistProductComponent } from './components/wishlist-product/wishlist-product.component';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     MatFormFieldModule,
     MatInputModule,
     NzPopoverModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzModalModule
   ],
   exports:[
     NzButtonModule,
@@ -92,7 +94,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     OrderDetailsComponent,
     WishlistProductComponent,
     NzPopoverModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzModalModule
   ]
 })
 export class SharedModule { }

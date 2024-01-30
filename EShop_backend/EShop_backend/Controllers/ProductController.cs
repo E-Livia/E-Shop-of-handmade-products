@@ -10,6 +10,7 @@ using System.Data;
 using EShop_backend.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.IO;
 
 namespace EShop_backend.Controllers
 {
@@ -19,9 +20,12 @@ namespace EShop_backend.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        public ProductController(IConfiguration configuration)
+        private readonly dbOnlineShopContext _context;
+
+        public ProductController(IConfiguration configuration, dbOnlineShopContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
 
         [HttpGet]
@@ -48,18 +52,12 @@ namespace EShop_backend.Controllers
             return new JsonResult(table);
         }
 
-        [HttpPost]
-        public JsonResult Post(Product product)
+        [Route("OrderByNameASC")]
+        [HttpGet]
+        public JsonResult OrderProductsByNameAsc()
         {
             string query = @"
-                    insert into dbo.Product values
-                    (
-                    '" + product.Name + @"'
-                    ,'" + product.Description + @"'
-                    ," + product.Price + @"
-                    ,'" + product.Credits + @"'
-                    ,'" + product.Active + @"')
-                    ";
+                exec OrderProductsByNameASC";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
             SqlDataReader myReader;
@@ -68,6 +66,61 @@ namespace EShop_backend.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [Route("OrderByNameDESC")]
+        [HttpGet]
+        public JsonResult OrderProductsByNameDesc()
+        {
+            string query = @"
+                exec OrderProductsByNameDESC";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
+
+        [HttpPost]
+        public JsonResult Post(productCred product)
+        {
+            var query = "EXEC InsertProduct @name,@description,@price,@credits,@imagePath,@categoryName";
+            
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@name", product.Name);
+                    myCommand.Parameters.AddWithValue("@description", product.Description);
+                    myCommand.Parameters.AddWithValue("@price", product.Price);
+                    myCommand.Parameters.AddWithValue("@credits", product.Credits);
+                    myCommand.Parameters.AddWithValue("@imagePath", product.ImagePath);
+                    myCommand.Parameters.AddWithValue("@categoryName", product.CategoryName);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -160,5 +213,30 @@ namespace EShop_backend.Controllers
             return new JsonResult(table);
         }
 
+        [HttpDelete("{name}")]
+        public JsonResult DeleteProduct(string name)
+        {
+            var query = "EXEC DeleteProduct @name";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
+
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@name", name);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Removed Successfully");
+        }
     }
 }

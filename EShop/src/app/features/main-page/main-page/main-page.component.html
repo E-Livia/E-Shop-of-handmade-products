@@ -45,14 +45,14 @@
     <div class="main-content">
       <div id="filter-bar">
         <label>Sortare</label>
-        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menu">
+        <a class="dropdown" nz-dropdown [nzDropdownMenu]="menu" (click)="implicitOrder()">
           Implicit
           <span class="material-icons">arrow_drop_down</span>
         </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul nz-menu>
-            <li nz-menu-item>Nume (A>Z)</li>
-            <li nz-menu-item>Nume (Z>A)</li>
+            <li nz-menu-item (click)="orderByNameAsc()">Nume (A>Z)</li>
+            <li nz-menu-item (click)="orderByNameDesc()">Nume (Z>A)</li>
             <li nz-menu-item>Pret crescator</li>
             <li nz-menu-item>Pret descrescator</li>
           </ul>

@@ -21,6 +21,9 @@ export class ProductComponent implements OnInit {
   ProductList: any = [];
   selectedProduct: number = 0;
   loggedInRole: string;
+  shouldOrderByNameAsc: boolean = false;
+  shouldOrderImplicit:boolean=false;
+  shouldOrderByNameDesc: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,10 +32,11 @@ export class ProductComponent implements OnInit {
     private authService: AuthServiceService,
     private wishlistService: WishlistServiceService,
     private productService: ProductServiceService,
-    private adminWishlistService:AdminWishlistServiceService,
-    private adminCartService:AdminCartServiceService) {
+    private adminWishlistService: AdminWishlistServiceService,
+    private adminCartService: AdminCartServiceService) {
     this.loggedInUsername = this.authService.getLoggedInUsername();
     this.loggedInRole = this.authService.getLoggedInRole();
+    
   }
 
 
@@ -50,7 +54,28 @@ export class ProductComponent implements OnInit {
       if (this.searchedProd) {
         this.getSearchProducts(this.searchedProd);
       }
-    })
+    });
+
+    this.productService.shouldOrderByNameAsc$.subscribe(value=>{
+      this.shouldOrderByNameAsc=value;
+      if(this.shouldOrderByNameAsc){
+        this.orderProductsByNameASC();
+      }
+    })   
+
+    this.productService.shouldOrderImplicit$.subscribe(value=>{
+      this.shouldOrderImplicit=value;
+      if(this.shouldOrderImplicit){
+        this.refreshProductList();
+      }
+    })  
+    
+    this.productService.shouldOrderByNameDesc$.subscribe(value=>{
+      this.shouldOrderByNameDesc=value;
+      if(this.shouldOrderByNameDesc){
+        this.orderProductsByNameDESC();
+      }
+    }) 
   }
 
   addToCart(productId: number) {
@@ -112,8 +137,20 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  orderProductsByNameASC() {
+    this.productService.orderProductByNameASC().subscribe(data => {
+      this.ProductList = data;
+    })
+  }
+
   GetProductsByCategory(category: string) {
     this.productService.getProductByCategory(category).subscribe(data => {
+      this.ProductList = data;
+    })
+  }
+
+  orderProductsByNameDESC() {
+    this.productService.orderProductByNameDESC().subscribe(data => {
       this.ProductList = data;
     })
   }

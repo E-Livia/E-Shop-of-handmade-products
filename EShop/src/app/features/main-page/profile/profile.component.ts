@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthServiceService } from 'src/app/core/services/auth-service.service';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
 import { ClientServiceService } from 'src/app/core/services/client-service.service';
+import { ProductServiceService } from 'src/app/core/services/product-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +22,10 @@ export class ProfileComponent implements OnInit {
   UserBillingAddress:any=[];
   OrderHistory:any=[];
 
+  searchText: string = '';
+  private insertedSearch = new BehaviorSubject<any>('');
+  selectedCategory$ = this.insertedSearch.asObservable();
+
   goToAboutPage(){
     this.router.navigate(['/about']);
   }
@@ -30,7 +36,8 @@ export class ProfileComponent implements OnInit {
     this.cateoryService.setSelectedCategory("");
   }
 
-  constructor(private router:Router, private authService:AuthServiceService,private clientService:ClientServiceService, private cateoryService:CategoryServiceService) {
+  constructor(private router:Router, private authService:AuthServiceService,private clientService:ClientServiceService, private cateoryService:CategoryServiceService,
+    private productService:ProductServiceService) {
     this.loggedInUsername=this.authService.getLoggedInUsername();
     this.loggedInRole=this.authService.getLoggedInRole();
    }
@@ -83,4 +90,8 @@ export class ProfileComponent implements OnInit {
     //to do, functie de update billing address sau de add cu drop inainte, ceea ce e de preferat
   }
 
+  setTextForSearch(){
+    this.productService.setSearchText(this.searchText);
+    this.router.navigate(['main-page']);
+  }
 }

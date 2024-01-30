@@ -24,4 +24,8 @@ export class CategoryServiceService {
     getParentsForCategories():Observable<any[]>{
         return this.apiService.get(`/api/category/parentsForCategories`);
     }
+
+    addCategory(categoryCred:any){
+        return this.apiService.post('/api/category',categoryCred);
+    }
 }

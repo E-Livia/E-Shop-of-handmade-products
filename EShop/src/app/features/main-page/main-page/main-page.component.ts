@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/core/services/category-service.service';
+import { ProductServiceService } from 'src/app/core/services/product-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -12,7 +13,7 @@ export class MainPageComponent implements OnInit {
   categoryList:any;
   parentCategory:string='';
   parentList:any;
-  constructor(private categoryService:CategoryServiceService, private router:Router) { }
+  constructor(private categoryService:CategoryServiceService, private router:Router, private productService:ProductServiceService) { }
 
   ngOnInit(): void {
     this.getParentsForCategories();
@@ -55,5 +56,17 @@ export class MainPageComponent implements OnInit {
       console.log(this.categoryList);
     });
   
+  }
+
+  orderByNameAsc():void{
+    this.productService.setShouldOrderByNameAsc(true);
+  }
+
+  implicitOrder():void{
+    this.productService.setShouldOrderImplicit(true);
+  }
+
+  orderByNameDesc():void{
+    this.productService.setShouldOrderByNameDesc(true);
   }
 }

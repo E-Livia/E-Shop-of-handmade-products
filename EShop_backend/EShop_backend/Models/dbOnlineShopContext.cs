@@ -118,10 +118,6 @@ namespace EShop_backend.Models
                     .IsRequired()
                     .HasColumnName("categoryParent")
                     .HasMaxLength(50);
-
-                entity.Property(e => e.Description)
-                    .HasColumnName("description")
-                    .HasMaxLength(255);
             });
 
             modelBuilder.Entity<Client>(entity =>

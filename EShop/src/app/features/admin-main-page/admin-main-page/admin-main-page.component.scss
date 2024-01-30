@@ -24,11 +24,26 @@
   #left-sider{
     margin: 20px;
   }
+
+  .catalog-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
   
   .main-content{
     display: grid;
-    grid-template-rows: 10% 10% 80%;
+    grid-template-rows: 8% 10% 82%;
     height: 100vh;
+  }
+
+  .admin-commands{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
   }
   
   #filter-bar{

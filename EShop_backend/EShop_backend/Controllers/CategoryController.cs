@@ -72,7 +72,7 @@ namespace EShop_backend.Controllers
 
         [Route("parentsForCategories")]
         [HttpGet]
-        public JsonResult GetParentsForCategories ()
+        public JsonResult GetParentsForCategories()
         {
             var query = "EXEC GetParentsForCategories";
             DataTable table = new DataTable();
@@ -95,14 +95,10 @@ namespace EShop_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertCategory(Category cat)
+        public JsonResult InsertCategory(categoryCred cat)
         {
-            string query = @"
-                            insert into dbo.Category values
-                            ('" + cat.CategoryName + @"',
-                            '" + cat.Description + @"',
-                            '" + cat.Active + @"')
-                            ";
+            var query = "EXEC InsertCategory @categoryName,@categoryParent";
+
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ProductAppCon");
             SqlDataReader myReader;
@@ -111,7 +107,8 @@ namespace EShop_backend.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-
+                    myCommand.Parameters.AddWithValue("@categoryName", cat.CategoryName);
+                    myCommand.Parameters.AddWithValue("@categoryParent", cat.CategoryParent);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -120,8 +117,8 @@ namespace EShop_backend.Controllers
                 }
             }
 
-            return new JsonResult("Added successfully");
-        }
+            return new JsonResult("Added Successfully");
 
+        }
     }
 }
